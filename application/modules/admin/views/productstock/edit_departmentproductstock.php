@@ -42,11 +42,6 @@
                         <!-- -------------- Contact Form -------------- -->
                         <div class="allcp-form theme-info tab-pane active" id="contact" role="tabpanel">
                             <div class="panel">
-                                <!-- <div class="panel-heading">
-                                    <span class="panel-title">EDIT PRODUCT STOCK</span>
-                                </div> -->
-                                <!-- -------------- /Panel Heading -------------- -->
-
                                 <form method="post" action="<?php echo base_url();?>admin/Productstock/editdepartproductstock" id="form-contact1">
                                   <table class="table table-striped table-hover" id="datatable2" cellspacing="0" width="100%">
 
@@ -63,13 +58,8 @@
                                     <tbody>
                                         <?php
                                           $i=1;
-                                          //print_r($productstock_dept);
-                                          // print_r($product_quan);
-                                          //exit;
                                           foreach($productstock_dept as $val)
-                                            //foreach(array_combine($productstock_dept, $product_quan) as $val => $quan)
-                                           {
-                                           
+                                          {
                                         ?>
                                             <tr class="footable-even">
                                                 <td><span class="footable-toggle"></span><?php echo $i;?></td>

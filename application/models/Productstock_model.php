@@ -5,7 +5,7 @@ if (!defined('BASEPATH'))
 
 Class Productstock_model extends CI_Model
  {
-	function __construct()
+    function __construct()
     {
       parent::__construct();
     }
@@ -97,13 +97,12 @@ Class Productstock_model extends CI_Model
 
         $this->db->select("*");
         $this->db->where('uid',$uid);
+        $this->db->where('dept_id',$did);
         $this->db->from('product_stock');
         $res = $this->db->get()->result();
         //echo $this->db->last_query();
         //exit;
         if(count($res)>0){
-        //echo "in";
-
             $this->db->select('pro.product_name,pro.product_id,dt.department_name,dt.dept_id,ps.quantity,ps.check_val,ps.previous_quantity');
             $this->db->from('products as pro'); 
             $this->db->join('department as dt', 'dt.dept_id = pro.dept_id');
@@ -111,22 +110,20 @@ Class Productstock_model extends CI_Model
             $this->db->where('pro.dept_id',$did);
             $this->db->where('ps.uid',$uid);
             $this->db->where('date(ps.create_date)',date('Y-m-d'));
+            if(date('ps.create_date')!= date('Y-m-d') && date('ps.create_date') == date('Y-m-d', strtotime(' -1 day'))){
+                $this->db->where('date(ps.create_date)',date('Y-m-d', strtotime(' -1 day')));
+            }
             $this->db->group_by('pro.product_id');
-
-            
-            //exit;
+           
         }else{
             $this->db->select('pro.product_name,pro.product_id,dt.department_name,dt.dept_id');
             $this->db->from('products as pro'); 
             $this->db->join('department as dt', 'dt.dept_id = pro.dept_id');
-            //$this->db->join('product_stock as ps', 'ps.dept_id = pro.dept_id and `ps`.`product_id` = `pro`.`product_id`','left');
             $this->db->where('pro.dept_id',$did);
-            //$this->db->where('ps.uid',$uid);
-            //$this->db->where('date(ps.create_date)',date('Y-m-d'));
             $this->db->group_by('pro.product_id');
         }
         $query = $this->db->get();
-       // echo $this->db->last_query();
+        //echo $this->db->last_query();
         //exit;
         return $query->result();
     }
@@ -180,7 +177,7 @@ Class Productstock_model extends CI_Model
                     //$this->db->where('date(ps.create_date)',date('Y-m-d'));
                     $this->db->limit("1","desc");
                     $predata = $this->db->get()->row();
-                    $prequan = $predata->quantity;
+                    $prequan = isset($predata->quantity)?$predata->quantity:"";
                     // echo $prequan;
                     // exit;
                     // $qudata = array('previous_quantity'=>$prequan);
@@ -251,5 +248,69 @@ Class Productstock_model extends CI_Model
         
     }
 
+    public function pdfgenerate($post,$did,$dept_id)
+    {   
+        $uid =$this->session->userdata['uid'];
+        $this->db->select('ps.*,dt.department_name,pro.product_name');
+        $this->db->from('product_stock as ps');
+        $this->db->join('products as pro', 'pro.product_id = ps.product_id');
+        $this->db->join('department as dt', 'dt.dept_id = ps.dept_id');
+        $this->db->where('ps.uid',$uid);
+        $this->db->where('ps.dept_id',$dept_id);
+        $this->db->where('date(ps.create_date)',date('Y-m-d'));
+        $query = $this->db->get()->result_array();
+        //echo $this->db->last_query();
+        //exit;
+        return $query;
+    }
     
+    public function sendemailpdf($uid,$saved_pdf)
+    {   
+        
+        $this->db->select('*');
+        $this->db->where('uid',$uid);
+        $this->db->from('user_master');
+        $user = $this->db->get()->row();
+
+        $email=$user->email;
+        $subject="RESNBOT REPORT";
+        $message="HELLO ".$user->username.", <br/> Please Find attachment of your product report. <br/> Thank you! ";
+
+        // $config = Array(
+        //   'protocol' => 'smtp',
+        //   'smtp_host' => 'ssl://smtp.googlemail.com',
+        //   'smtp_port' => 465,
+        //   'smtp_user' => 'niralikanani04@gmail.com', 
+        //   'smtp_pass' => 'Theparanoid@0407', 
+        //   'mailtype' => 'html',
+        //   'charset' => 'iso-8859-1',
+        //   'wordwrap' => TRUE
+        // );
+        $config = Array(
+          'protocol' => 'smtp',
+          'smtp_host' => 'mail.emailmanagers.net',
+          'smtp_port' => 3535,
+          'smtp_user' => 'no-reply@emailmanagers.net', // change it to yours
+          'smtp_pass' => 'N@rp!y$97', // change it to yours
+          'mailtype' => 'html',
+          'charset' => 'iso-8859-1',
+          'wordwrap' => TRUE
+        );
+        $this->load->library('email', $config);
+        $this->email->set_newline("\r\n");
+        $this->email->from('no-reply@emailmanagers.net');
+        $this->email->to($email);
+        $this->email->subject($subject);
+        $this->email->message($message);
+        $this->email->attach($saved_pdf);
+        if($this->email->send())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+            //show_error($this->email->print_debugger());
+        }
+    }
 }

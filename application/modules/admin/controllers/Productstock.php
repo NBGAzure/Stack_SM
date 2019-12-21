@@ -81,7 +81,7 @@ class Productstock extends CI_Controller {
   		$data['dept_id'] =$this->input->post('department_id');	
 	    $data['quantity']=$this->input->post('quantity');
 	    $data['create_date']=date('Y-m-d H:i:s');
-	    
+
 	    $this->Productstock_model->insert_productstock($data);
 
 	    $this->load->view('admin/header');
@@ -108,7 +108,6 @@ class Productstock extends CI_Controller {
 	
 	public function update_productstock()
 	{
-		
 		$this->load->model('Productstock_model');
 		$id =$this->input->post('id');
 	   	$data['uid'] =$this->session->userdata['uid'];
@@ -171,24 +170,97 @@ class Productstock extends CI_Controller {
 
 	public function editdepartproductstock()
 	{
-		
+		$this->load->view('admin/header');
+		$this->load->view('admin/nav');
 		$this->load->model('Productstock_model');
-		$id =$this->input->post('id');
+		$id = $this->input->post('id');
 	   	
 	   	$data['product_id'] =$this->input->post('product_id');
   		$data['dept_id'] =$this->input->post('dept_id');	
 	    $data['quantity']=$this->input->post('quantity');
 	    $data['check_val']=$this->input->post('check_val');
 	    $data['create_date']=date('Y-m-d H:i:s');
-	    //print_r($data);
-	    //exit;
-        $this->Productstock_model->update_deptproductstock($data,$id,$data['dept_id']);
-        $this->load->view('admin/header');
-		$this->load->view('admin/nav');
-		$this->session->set_flashdata('success', 'Productstock Has Been Updated Successfully');
+	    
+	    $this->Productstock_model->update_deptproductstock($data,$id,$data['dept_id']);
+	    
+	    $param['pdf_data']=$this->Productstock_model->pdfgenerate($data,$id,$data['dept_id']);
+	   
+	    $htmlContent = $this->load->view('admin/Productstock/pdfclientreport', $param, TRUE);
+	    $uid =$this->session->userdata['uid'];
 
+        $createPDFFile = $uid.'uid_'.time().'.pdf';
+        
+        $this->createPDF(FCPATH.'pdf/'.$createPDFFile, $htmlContent);
+        $saved_pdf = base_url().'pdf/'.$createPDFFile;
+        
+        $this->Productstock_model->sendemailpdf($uid,$saved_pdf);
+
+		$this->session->set_flashdata('success', 'Productstock Has Been Updated Successfully');
 		redirect('admin/Productstock/departmentproduct/'.$data['dept_id'].'' ,'refresh');
-		//exit;
-	    $this->load->view('admin/footer');
+		$this->load->view('admin/footer');
 	}
+
+	public function createPDF($fileName,$html)
+    {
+        ob_start(); 
+        // Include the main TCPDF library (search for installation path).
+        $this->load->library('Pdf');
+        // create new PDF document
+        $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+        // set document information
+        $pdf->SetCreator(PDF_CREATOR);
+        $pdf->SetAuthor('TechArise');
+        $pdf->SetTitle('TechArise');
+        $pdf->SetSubject('TechArise');
+        $pdf->SetKeywords('TechArise');
+
+        // set default header data
+        $pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE, PDF_HEADER_STRING);
+
+        // set header and footer fonts
+        $pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+        $pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+        
+        $pdf->SetPrintHeader(false);
+        $pdf->SetPrintFooter(false);
+
+        // set default monospaced font
+        $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+
+        // set margins
+        $pdf->SetMargins(PDF_MARGIN_LEFT, 0, PDF_MARGIN_RIGHT);
+        $pdf->SetHeaderMargin(0);
+        $pdf->SetFooterMargin(0);
+
+        // set auto page breaks
+        //$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+        $pdf->SetAutoPageBreak(TRUE, 0);
+
+        // set image scale factor
+        $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+
+        // set some language-dependent strings (optional)
+        if (@file_exists(dirname(__FILE__).'/lang/eng.php')) {
+            require_once(dirname(__FILE__).'/lang/eng.php');
+            $pdf->setLanguageArray($l);
+        }       
+
+        // set font
+        $pdf->SetFont('dejavusans', '', 10);
+
+        // add a page
+        $pdf->AddPage();
+
+        // output the HTML content
+        $pdf->writeHTML($html, true, false, true, false, '');
+
+        // reset pointer to the last page
+        $pdf->lastPage();       
+        ob_end_clean();
+        //Close and output PDF document
+        $pdf->Output($fileName, 'F');   
+        //Download PDF document
+        //$pdf->Output($fileName, 'I'); 
+        //$pdf->Output($fileName, 'D');       
+    }
 }
