@@ -116,7 +116,7 @@ class Product extends CI_Controller {
         $this->load->view('admin/header');
 		$this->load->view('admin/nav');
 		$this->session->set_flashdata('success', 'Product Has Been Updated Successfully');
-		redirect('admin/Product/Product_list' ,'refresh');
+		redirect('admin/product/Product_list' ,'refresh');
 	    $this->load->view('admin/footer');
 	}
 
@@ -128,7 +128,7 @@ class Product extends CI_Controller {
         $this->load->view('admin/header');
 		$this->load->view('admin/nav');
 		$this->session->set_flashdata('success', 'Product Has Been Deleted Successfully');
-        redirect('admin/Product/product_list', 'refresh');
+        redirect('admin/product/product_list', 'refresh');
         $this->load->view('admin/footer');
 	}
 
