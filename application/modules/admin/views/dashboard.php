@@ -40,7 +40,7 @@
                                     <div class="col-xs-7 pl5">
                                         <h6 class="text-muted">PRODUCTS</h6>
 
-                                        <h2 class="fs50 mt5 mbn"><?php// echo $total_artists; ?></h2>
+                                        <h2 class="fs50 mt5 mbn"></h2>
                                     </div>
                                 </div>
                             </div>
@@ -55,7 +55,7 @@
                                     <div class="col-xs-7 pl5">
                                         <h6 class="text-muted">DEPARTMENTS</h6>
 
-                                        <h2 class="fs50 mt5 mbn"><?php //echo $total_hosts; ?></h2>
+                                        <h2 class="fs50 mt5 mbn"></h2>
                                     </div>
                                 </div>
                             </div>
