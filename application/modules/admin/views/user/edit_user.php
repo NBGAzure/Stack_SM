@@ -20,7 +20,7 @@
                     <li class="breadcrumb-link">
                         <a href="<?php echo base_url(); ?>admin/Home">Home</a>
                     </li>
-                    <li class="breadcrumb-current-item">Edit Product</li>
+                    <li class="breadcrumb-current-item">Edit User</li>
                 </ol>
             </div>
             
@@ -39,7 +39,7 @@
                         <div class="allcp-form theme-info tab-pane mw600 active" id="contact" role="tabpanel">
                             <div class="panel">
                                 <div class="panel-heading">
-                                    <span class="panel-title">EDIT PRODUCT</span>
+                                    <span class="panel-title">EDIT USER</span>
                                 </div>
                                 <!-- -------------- /Panel Heading -------------- -->
 
@@ -48,7 +48,7 @@
                                     <div class="panel-body pn">
                                         <div class="section">
                                             <label for="names" class="field prepend-icon">
-                                                <input type="text" name="user_name" id="user_name" class="gui-input" placeholder="User Name" style="padding-left: 5px;" value="<?php echo $user_name?>" required/>
+                                                <input type="text" name="user_name" id="user_name" class="gui-input" style="padding-left: 5px;" value="<?php echo $user_name?>" required/>
                                             </label>
                                         </div>
 
