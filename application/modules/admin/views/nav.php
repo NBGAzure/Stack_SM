@@ -125,9 +125,9 @@
 
 
                 <?php if($_SESSION['username']=='superadmin') {  ?>
-                <?php if(current_url() == site_url('admin/product/product_list')) { $class = 'active';} else { $class =''; }  ?>
+                <?php if(current_url() == site_url('admin/Product/product_list')) { $class = 'active';} else { $class =''; }  ?>
                 <li class="<?php print $class; ?>">
-                   <a href="<?php echo site_url('admin/product/product_list');?>">
+                   <a href="<?php echo site_url('admin/Product/product_list');?>">
                         <span class="fa fa-desktop"></span>
                         <span class="sidebar-title">Product</span>
                     </a>
