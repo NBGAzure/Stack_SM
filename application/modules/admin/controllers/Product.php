@@ -55,7 +55,7 @@ class Product extends CI_Controller {
 			$params['search'] = $search_text;
         }
 
-		$this->load->view('admin/Product/product_list',$params);
+		$this->load->view('admin/product/product_list',$params);
 	 	//$this->load->view('admin/footer');  	
 	}
 
