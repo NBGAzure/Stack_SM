@@ -61,7 +61,7 @@
                                        
                                     ?>
                                         <tr class="footable-even">
-                                            <td><span class="footable-toggle"></span><?php echo $val->uid;?></td>
+                                            <td><span class="footable-toggle"></span><?php echo $i;?></td>
                                             <td><?php echo $val->username;?></td>
                                             <td>
                                                 <a class="btn-primary" href="<?php echo base_url()?>admin/User/edituser/<?php echo $val->uid; ?>" id="edit" title='Edit' style="padding: 5px 15px;margin-right: 10px;">Edit</a>
