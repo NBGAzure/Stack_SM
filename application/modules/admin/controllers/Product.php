@@ -83,7 +83,7 @@ class Product extends CI_Controller {
 	    $this->load->view('admin/header');
 		$this->load->view('admin/nav');
 		$this->session->set_flashdata('success', 'Product Has Been Inserted Successfully');
-		redirect('admin/Product/product_list' ,'refresh');
+		redirect('admin/product/product_list' ,'refresh');
 		$this->load->view('admin/footer');
 	}
 	
@@ -101,7 +101,7 @@ class Product extends CI_Controller {
 	    
 	    $this->load->view('admin/header');
 		$this->load->view('admin/nav');
-	    $this->load->view('admin/Product/edit_product',$data);
+	    $this->load->view('admin/product/edit_product',$data);
 	    $this->load->view('admin/footer');
 	}
 	
