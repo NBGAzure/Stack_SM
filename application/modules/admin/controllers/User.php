@@ -118,7 +118,7 @@ class User extends CI_Controller {
 	public function delete_user()
 	{	
 		$id = $_POST['list_id'];
-	    $this->db->where('id', $id);
+	    $this->db->where('uid', $id);
         $this->db->delete('user_master');
         $this->load->view('admin/header');
 		$this->load->view('admin/nav');
