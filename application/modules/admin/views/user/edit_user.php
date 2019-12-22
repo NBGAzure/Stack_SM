@@ -2,7 +2,7 @@
     <section id="content_wrapper" style="margin-top: 67px;">
 <?php 
     $uid=(isset($user_data[0]->uid)!='')?$user_data[0]->uid:'';
-    $user_name=(isset($user_data[0]->user_name)!='')?$user_data[0]->user_name:'';
+    $user_name=(isset($user_data[0]->username)!='')?$user_data[0]->username:'';
 ?>
 
         <!-- -------------- Topbar -------------- -->
