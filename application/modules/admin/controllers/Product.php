@@ -13,7 +13,7 @@ class Product extends CI_Controller {
 	{	
 		$this->load->view('admin/header');
 		$this->load->view('admin/nav');
-		$this->load->view('admin/Product/product_list');
+		$this->load->view('admin/product/product_list');
 		//$this->load->view('admin/footer');
 	}
 
