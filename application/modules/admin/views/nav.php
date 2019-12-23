@@ -5,6 +5,11 @@
   // elseif(current_url() == site_url('admin/Category/hostsubcategory_list')) { $class = 'tables-datatables';$class2='scroll';$class3='#nav-spy';$class4='300';} 
   // elseif (current_url() == site_url('admin/User_role/role_list')) {$class = 'tables-datatables';$class2='scroll';$class3='#nav-spy';$class4='300';}
   //else { $class ='dashboard-page';$class2='';$class3='';$class4='';}  
+// if(){
+//     $class="";
+// }else{
+//     $class="dashboard-page sb-l-o sb-r-c mobile-view sb-l-m chute-rescale sb-l-disable-animation onload-check";
+// }
 ?>
 <body class="dashboard-page" data-spy="" data-target="" data-offset="">
 
