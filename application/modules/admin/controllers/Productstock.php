@@ -6,6 +6,7 @@ class Productstock extends CI_Controller {
 	function __construct() {
 		parent::__construct();
 		$this->load->library('Pagination');
+		$this->load->library('Pdf');
 	}
 	
 
