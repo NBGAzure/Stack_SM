@@ -185,7 +185,7 @@ class Productstock extends CI_Controller {
 	    
 	    $param['pdf_data']=$this->Productstock_model->pdfgenerate($data,$id,$data['dept_id']);
 	   
-	    $htmlContent = $this->load->view('admin/Productstock/pdfclientreport', $param, TRUE);
+	    $htmlContent = $this->load->view('admin/productstock/pdfclientreport', $param, TRUE);
 	    $uid =$this->session->userdata['uid'];
 
         $createPDFFile = $uid.'uid_'.time().'.pdf';
