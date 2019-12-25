@@ -109,8 +109,10 @@ Class Productstock_model extends CI_Model
             $this->db->join('product_stock as ps', 'ps.dept_id = pro.dept_id and `ps`.`product_id` = `pro`.`product_id`','left');
             $this->db->where('pro.dept_id',$did);
             $this->db->where('ps.uid',$uid);
-            $this->db->where('date(ps.create_date)',date('Y-m-d'));
-            if(date('ps.create_date')!= date('Y-m-d') && date('ps.create_date') == date('Y-m-d', strtotime(' -1 day'))){
+            if(date('ps.create_date') = date('Y-m-d'){
+                $this->db->where('date(ps.create_date)',date('Y-m-d'));
+            }
+            elseif(date('ps.create_date')!= date('Y-m-d') && date('ps.create_date') == date('Y-m-d', strtotime(' -1 day'))){
                 $this->db->where('date(ps.create_date)',date('Y-m-d', strtotime(' -1 day')));
             }
             $this->db->group_by('pro.product_id');
@@ -123,8 +125,8 @@ Class Productstock_model extends CI_Model
             $this->db->group_by('pro.product_id');
         }
         $query = $this->db->get();
-        //echo $this->db->last_query();
-        //exit;
+        echo $this->db->last_query();
+        exit;
         return $query->result();
     }
 
