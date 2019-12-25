@@ -278,10 +278,10 @@ Class Productstock_model extends CI_Model
 
         // $config = Array(
         //   'protocol' => 'smtp',
-        //   'smtp_host' => 'ssl://smtp.googlemail.com',
-        //   'smtp_port' => 465,
-        //   'smtp_user' => 'niralikanani04@gmail.com', 
-        //   'smtp_pass' => 'Theparanoid@0407', 
+        //   'smtp_host' => 'smtp.hostinger.com',
+        //   'smtp_port' => 587,
+        //   'smtp_user' => 'daily-report@resnbot.net', 
+        //   'smtp_pass' => 'SJI1J*Z]H0', 
         //   'mailtype' => 'html',
         //   'charset' => 'iso-8859-1',
         //   'wordwrap' => TRUE
