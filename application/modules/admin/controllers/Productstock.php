@@ -163,7 +163,7 @@ class Productstock extends CI_Controller {
 	    
 		$this->load->view('admin/header');
 		$this->load->view('admin/nav');
-	    $this->load->view('admin/Productstock/edit_departmentproductstock',$data);
+	    $this->load->view('admin/productstock/edit_departmentproductstock',$data);
 	    $this->load->view('admin/footer');
 	}
 

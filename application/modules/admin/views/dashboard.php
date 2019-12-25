@@ -31,7 +31,7 @@
 
                 <!-- -------------- Quick Links -------------- -->
                 <div class="row">
-                    <div class="col-sm-6 col-xl-6">
+                   <!--  <div class="col-sm-6 col-xl-6">
                         <div class="panel panel-tile">
                             <div class="panel-body">
                                 <div class="row pv10">
@@ -60,7 +60,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     
                 </div>
 
