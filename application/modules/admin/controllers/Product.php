@@ -13,7 +13,7 @@ class Product extends CI_Controller {
 	{	
 		$this->load->view('admin/header');
 		$this->load->view('admin/nav');
-		$this->load->view('admin/product/product_list');
+		$this->load->view('admin/Product/product_list');
 		//$this->load->view('admin/footer');
 	}
 
@@ -55,7 +55,7 @@ class Product extends CI_Controller {
 			$params['search'] = $search_text;
         }
 
-		$this->load->view('admin/product/product_list',$params);
+		$this->load->view('admin/Product/product_list',$params);
 	 	//$this->load->view('admin/footer');  	
 	}
 
@@ -66,6 +66,8 @@ class Product extends CI_Controller {
 	 	$this->load->model('Product_model');
 	 	$this->load->model('Department_model');
 		$params["results"] = $this->Department_model->getdepartmentname();
+		$this->load->model('Store_model');
+		$params["storeresults"] = $this->Store_model->getstorename();
 	 	$this->load->view('product/add_product', $params);
 	 	$this->load->view('admin/footer');
 	}
@@ -77,13 +79,14 @@ class Product extends CI_Controller {
   		$id =$this->input->post('dept_id');	
 	    $data['product_name']=$this->input->post('product_name');
 	    $data['dept_id']=$this->input->post('dept_id');
+	    $data['str_id']=$this->input->post('str_id');
 	    
 	    $this->Product_model->insert_product($data);
 
 	    $this->load->view('admin/header');
 		$this->load->view('admin/nav');
 		$this->session->set_flashdata('success', 'Product Has Been Inserted Successfully');
-		redirect('admin/product/product_list' ,'refresh');
+		redirect('admin/Product/product_list' ,'refresh');
 		$this->load->view('admin/footer');
 	}
 	
@@ -98,10 +101,11 @@ class Product extends CI_Controller {
 	    //exit;
 	    $this->load->model('Department_model');
 		$data["results"] = $this->Department_model->getdepartmentname();
-	    
+	    $this->load->model('Store_model');
+		$data["storeresults"] = $this->Store_model->getstorename();
 	    $this->load->view('admin/header');
 		$this->load->view('admin/nav');
-	    $this->load->view('admin/product/edit_product',$data);
+	    $this->load->view('admin/Product/edit_product',$data);
 	    $this->load->view('admin/footer');
 	}
 	
@@ -112,23 +116,24 @@ class Product extends CI_Controller {
 		$id =$this->input->post('product_id');	
 		$data['product_name']=$this->input->post('product_name');
 	    $data['dept_id']=$this->input->post('dept_id');
+	    $data['str_id']=$this->input->post('str_id');
         $this->Product_model->update_product($data,$id);
         $this->load->view('admin/header');
 		$this->load->view('admin/nav');
 		$this->session->set_flashdata('success', 'Product Has Been Updated Successfully');
-		redirect('admin/product/Product_list' ,'refresh');
+		redirect('admin/Product/Product_list' ,'refresh');
 	    $this->load->view('admin/footer');
 	}
 
 	public function delete_product()
 	{	
 		$id = $_POST['list_id'];
-	    $this->db->where('dept_id', $id);
+	    $this->db->where('product_id', $id);
         $this->db->delete('product');
         $this->load->view('admin/header');
 		$this->load->view('admin/nav');
 		$this->session->set_flashdata('success', 'Product Has Been Deleted Successfully');
-        redirect('admin/product/product_list', 'refresh');
+        redirect('admin/Product/product_list', 'refresh');
         $this->load->view('admin/footer');
 	}
 

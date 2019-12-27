@@ -5,11 +5,6 @@
   // elseif(current_url() == site_url('admin/Category/hostsubcategory_list')) { $class = 'tables-datatables';$class2='scroll';$class3='#nav-spy';$class4='300';} 
   // elseif (current_url() == site_url('admin/User_role/role_list')) {$class = 'tables-datatables';$class2='scroll';$class3='#nav-spy';$class4='300';}
   //else { $class ='dashboard-page';$class2='';$class3='';$class4='';}  
-// if(){
-//     $class="";
-// }else{
-//     $class="dashboard-page sb-l-o sb-r-c mobile-view sb-l-m chute-rescale sb-l-disable-animation onload-check";
-// }
 ?>
 <body class="dashboard-page" data-spy="" data-target="" data-offset="">
 
@@ -22,9 +17,9 @@
     <header class="navbar navbar-fixed-top bg-dark">
         <div class="navbar-logo-wrapper">
             <a class="navbar-logo-text" href="#">
-                <b>RESNBOT</b>
+                <b>SM</b>
             </a>
-            <!-- <span id="sidebar_left_toggle" class="ad ad-lines"></span> -->
+            <span id="sidebar_left_toggle" class="ad ad-lines"></span>
         </div>
         
         <ul class="nav navbar-nav navbar-right">
@@ -128,6 +123,26 @@
                 </li>
                 <?php } ?>
 
+                <?php if($_SESSION['username']=='superadmin') {  ?>
+
+                <?php if(current_url() == site_url('admin/Store/store_list')) { $class = 'active';} else { $class =''; }  ?>
+                <li class="<?php print $class; ?>">
+                   <a href="<?php echo site_url('admin/Store/store_list');?>">
+                        <span class="fa fa-desktop"></span>
+                        <span class="sidebar-title">Store</span>
+                    </a>
+                </li>
+
+                <?php if(current_url() == site_url('admin/Department/department_list')) { $class = 'active';} else { $class =''; }  ?>
+                <li class="<?php print $class; ?>">
+                   <a href="<?php echo site_url('admin/Department/department_list');?>">
+                        <span class="fa fa-desktop"></span>
+                        <span class="sidebar-title">Department</span>
+                    </a>
+                </li>
+                <?php } ?>
+                
+
 
                 <?php if($_SESSION['username']=='superadmin') {  ?>
                 <?php if(current_url() == site_url('admin/Product/product_list')) { $class = 'active';} else { $class =''; }  ?>
@@ -162,16 +177,7 @@
                 <?php } ?>
 
 
-                <?php if($_SESSION['username']=='superadmin') {  ?>
-                <?php if(current_url() == site_url('admin/Department/department_list')) { $class = 'active';} else { $class =''; }  ?>
-                <li class="<?php print $class; ?>">
-                   <a href="<?php echo site_url('admin/Department/department_list');?>">
-                        <span class="fa fa-desktop"></span>
-                        <span class="sidebar-title">Department</span>
-                    </a>
-                </li>
-                <?php } ?>
-                
+               
             </ul> 
 
             <!-- -------------- /Sidebar Menu  -------------- -->

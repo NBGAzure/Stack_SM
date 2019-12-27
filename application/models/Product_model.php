@@ -18,9 +18,10 @@ Class Product_model extends CI_Model
     public function getproduct($limit, $start, $search)
     {
         
-        $this->db->select('ps.*,dt.*');
+        $this->db->select('ps.*,dt.*,st.*');
         $this->db->from('products as ps');
         $this->db->join('department as dt','dt.dept_id = ps.dept_id');
+        $this->db->join('store as st','st.str_id = ps.str_id');
         if($search != ''){
           $this->db->like('ps.product_name', $search);
         }
@@ -55,9 +56,10 @@ Class Product_model extends CI_Model
 
     public function geteditproduct($cid)
     {
-        $this->db->select('ps.*,dt.*'); 
+        $this->db->select('ps.*,dt.*,st.*'); 
         $this->db->from('products as ps');
         $this->db->join('department as dt','dt.dept_id = ps.dept_id');
+        $this->db->join('store as st','st.str_id = ps.str_id');
         $this->db->where('ps.product_id',$cid);
           
         $query = $this->db->get();
