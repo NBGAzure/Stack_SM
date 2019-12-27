@@ -17,7 +17,7 @@
     <header class="navbar navbar-fixed-top bg-dark">
         <div class="navbar-logo-wrapper">
             <a class="navbar-logo-text" href="#">
-                <b>SM</b>
+                <b>RESNBOT</b>
             </a>
             <span id="sidebar_left_toggle" class="ad ad-lines"></span>
         </div>

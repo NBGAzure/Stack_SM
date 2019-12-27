@@ -62,8 +62,11 @@
 
             <!-- -------------- Login Form -------------- -->
             <div class="allcp-form theme-primary mw320" id="login">
-                
+                <div style="background: #ffffff14;">
+                    <img src="<?php echo base_url();?>assets/img/resnbot.png" style="width: 46%;text-align: center !important;margin: 10px 86px;">
+                </div>
                 <div class="panel mw320">
+
 
                 <?php echo validation_errors(); ?>
                 <?php if($this->session->flashdata('flash_data')): ?>
