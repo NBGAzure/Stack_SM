@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/allcp/forms/css/forms.css">
 
     <!-- -------------- Favicon -------------- -->
-    <link rel="shortcut icon" href="<?php echo base_url();?>assets/img/fav.png">
+    <link rel="shortcut icon" href="<?php echo base_url();?>assets/img/fav.ico">
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
