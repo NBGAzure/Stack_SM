@@ -9,7 +9,7 @@ class Home extends MY_Controller {
     public function index()
     {  
 
-        $this->load->model('Admin_model'); 
+        //$this->load->model('Admin_model'); 
         $this->load->view('admin/header');
         $this->load->view('admin/nav');
         $this->load->view('dashboard');
