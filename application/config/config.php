@@ -23,8 +23,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-//$config['base_url'] = 'http://localhost/Stack_SM/';
-$config['base_url'] = 'http://resnbot.net';
+$config['base_url'] = 'http://localhost/Github/Stack_SM/';
+//$config['base_url'] = 'http://resnbot.net';
 
 
 /*
