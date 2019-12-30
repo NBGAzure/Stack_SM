@@ -50,6 +50,7 @@
                                   <th class="va-m">Product Name</th>
                                   <th class="va-m">Department Name</th>
                                   <th class="va-m">Store Name</th>
+                                  <th class="va-m">Date</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -64,6 +65,7 @@
                                             <td><?php echo $val->product_name;?></td>
                                             <td><?php echo $val->department_name;?></td>
                                             <td><?php echo $val->store_name;?></td>
+                                            <td><?php echo date("Y-m-d", strtotime($val->create_date));?></td>
                                         </tr>
                                     <?php
                                         $i++;
