@@ -13,7 +13,7 @@ class Productstock extends CI_Controller {
 	{	
 		$this->load->view('admin/header');
 		$this->load->view('admin/nav');
-		$this->load->view('admin/Productstock/productstock_list');
+		$this->load->view('admin/productstock/productstock_list');
 		//$this->load->view('admin/footer');
 	}
 
@@ -56,7 +56,7 @@ class Productstock extends CI_Controller {
         $params["product_data"] = $this->Productstock_model->getproduct();
 	 	$params["department_data"] = $this->Productstock_model->getdepartment();
 
-		$this->load->view('admin/Productstock/productstock_list',$params);
+		$this->load->view('admin/productstock/productstock_list',$params);
 	 	//$this->load->view('admin/footer');  	
 	}
 
@@ -102,7 +102,7 @@ class Productstock extends CI_Controller {
 
 	    $this->load->view('admin/header');
 		$this->load->view('admin/nav');
-	    $this->load->view('admin/Productstock/edit_productstock',$data);
+	    $this->load->view('admin/productstock/edit_productstock',$data);
 	    $this->load->view('admin/footer');
 	}
 	
@@ -163,7 +163,7 @@ class Productstock extends CI_Controller {
 	    
 		$this->load->view('admin/header');
 		$this->load->view('admin/nav');
-	    $this->load->view('admin/Productstock/edit_departmentproductstock',$data);
+	    $this->load->view('admin/productstock/edit_departmentproductstock',$data);
 	    $this->load->view('admin/footer');
 	}
 
@@ -188,7 +188,7 @@ class Productstock extends CI_Controller {
 	    
 	    $param['pdf_data']=$this->Productstock_model->pdfgenerate($data,$id,$data['dept_id']);
 	   
-	    $htmlContent = $this->load->view('admin/Productstock/pdfclientreport', $param, TRUE);
+	    $htmlContent = $this->load->view('admin/productstock/pdfclientreport', $param, TRUE);
 	    $uid =$this->session->userdata['uid'];
 
         $createPDFFile = $uid.'uid_'.time().'.pdf';
