@@ -60,15 +60,25 @@
                                           $i=1;
                                           foreach($productstock_dept as $val)
                                           {
+                                            //print_r($productstock_dept);
+                                            $uid = $this->session->userdata['uid'];
+                                            $predate = date('Y-m-d', strtotime(' -1 day'));
+                                            $prequ= "SELECT `quantity` from `product_stock` where `dept_id` = $val->dept_id and `product_id` = $val->product_id and `uid` = $uid and date(`create_date`)= '$predate' ";
+                                            $prequ_data = $this->db->query($prequ)->row();
+                                            // echo $this->db->last_query();
+                                            // print_r($prequ_data);
                                         ?>
                                             <tr class="footable-even">
                                                 <td><span class="footable-toggle"></span><?php echo $i;?></td>
                                                 <td><?php echo $val->product_name;?><input type="hidden" name="product_id[]" value="<?php echo $val->product_id;?>"></td>
                                                 <td><input type="hidden" name="dept_id" value="<?php echo $val->dept_id;?>"><?php echo $val->department_name;?></td>
-                                                <td><?php echo isset($val->previous_quantity)?$val->previous_quantity:"";?></td>
+                                                <!-- <td><?php echo isset($val->previous_quantity)?$val->previous_quantity:"";?></td> -->
+                                                <td><?php echo isset($prequ_data->quantity)?$prequ_data->quantity:"";?></td>
                                                 <td><input type="text" name="quantity[]" value="<?php if(isset($val->quantity)){echo $val->quantity;}else{
                                                   echo "";}?>"></td>
-                                                <td><input type="checkbox" id="checkItem" name="check_val[]" value="1"<?php if(isset($val->check_val)){echo "checked = cheched";}else{echo "";}?>>
+                                                <td>
+                                                    <!-- <input type="hidden" id="checkItem" name="check_val[]" value="0" /> -->
+                                                    <input type="checkbox" id="checkItem" name="check_val[]" value="1"<?php if(isset($val->check_val)){echo "checked = checked";}else{echo "";}?>>
                                                 </td>
                                             </tr>
                                         <?php

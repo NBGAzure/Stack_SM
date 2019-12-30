@@ -94,18 +94,25 @@ Class Productstock_model extends CI_Model
     public function geteditdepartmentproduct($did)
     {   
         $uid =$this->session->userdata['uid'];
+        $today = date('Y-m-d');
+        // $predate = date('Y-m-d', strtotime(' -1 day'));
 
-        $this->db->select("*");
-        $this->db->where('uid',$uid);
-        $this->db->where('dept_id',$did);
-        $this->db->from('product_stock');
+        // $prequ= "Select quantity from product_stock where dept_id = '$did' and uid = '$uid' and create_date= '$predate'";
+        //print $prequ;
+        $this->db->select("ps.*");
+        $this->db->from('product_stock as ps');
+        $this->db->where('ps.uid',$uid);
+        $this->db->where('ps.dept_id',$did);
+        //$this->db->where('ps.previous_quantity',$prequ);
+        $this->db->where('DATE(ps.create_date)',$today);
+        
         $res = $this->db->get()->result();
-        //echo $this->db->last_query();
-        //exit;
+        // echo $this->db->last_query();
+        // exit;
         if(count($res)>0){
             $this->db->select('pro.product_name,pro.product_id,dt.department_name,dt.dept_id,ps.quantity,ps.check_val,ps.previous_quantity,ps.create_date');
             $this->db->from('products as pro'); 
-            $this->db->join('department as dt', 'dt.dept_id = pro.dept_id');
+            $this->db->join('department as dt', 'dt.dept_id = pro.dept_id','left');
             $this->db->join('product_stock as ps', 'ps.dept_id = pro.dept_id and `ps`.`product_id` = `pro`.`product_id`','left');
             $this->db->where('pro.dept_id',$did);
             $this->db->where('ps.uid',$uid);
@@ -123,8 +130,8 @@ Class Productstock_model extends CI_Model
             $this->db->group_by('pro.product_id');
         }
         $query = $this->db->get();
-        // echo $this->db->last_query();
-        // exit;
+        //echo $this->db->last_query();
+        //exit;
         return $query->result();
     }
 
@@ -137,7 +144,7 @@ Class Productstock_model extends CI_Model
         $this->db->where('ps.uid',$uid);
         $this->db->where('ps.dept_id',$did);
         //$this->db->where('date(ps.create_date)',date('Y-m-d', strtotime('now - 1day')));
-        $this->db->where('date(ps.create_date)',date('Y-m-d', strtotime('now - 1day')));
+        //$this->db->where('date(ps.create_date)',date('Y-m-d'));
         $query = $this->db->get();
         return $query->result();
     }
@@ -158,8 +165,6 @@ Class Productstock_model extends CI_Model
 
     public function update_deptproductstock($post,$did,$dept_id)
     {   
-        
-
         $uid =$this->session->userdata['uid'];
         $insertArray = array();
         $updateArray = array();
@@ -200,16 +205,16 @@ Class Productstock_model extends CI_Model
                             'product_id'  => $value,
                             'dept_id'     => $dept_id,
                             'quantity'    => $post['quantity'][$key],
-                            'check_val'   => $post['check_val'][$key],
+                            'check_val'   => isset($post['check_val'][$key])?$post['check_val'][$key]:'',
                             'create_date' => date( 'Y-m-d H:i:s' )
                         );
                         $today = date('Y-m-d');
                         $this->db->where(array('uid'=>$uid,'product_id'=>$value,'dept_id'=>$dept_id));
                         $this->db->where('DATE(create_date)',$today);
                         $this->db->update('product_stock', $updateArray);
-                       // echo $this->db->last_query();
+                        //echo $this->db->last_query();
                        // echo "in";
-                       // exit;
+                        
                     }
                     else
                     {

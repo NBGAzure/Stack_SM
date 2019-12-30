@@ -178,9 +178,11 @@ class Productstock extends CI_Controller {
 	   	$data['product_id'] =$this->input->post('product_id');
   		$data['dept_id'] =$this->input->post('dept_id');	
 	    $data['quantity']=$this->input->post('quantity');
-	    $data['check_val']=$this->input->post('check_val');
+	    $check = $this->input->post('check_val[]');
+	    $data['check_val']=$this->input->post('check_val[]'); 
 	    $data['create_date']=date('Y-m-d H:i:s');
-	    
+	    //print_r($data['check_val']);
+	    //exit;
 	    $this->Productstock_model->update_deptproductstock($data,$id,$data['dept_id']);
 	    
 	    $param['pdf_data']=$this->Productstock_model->pdfgenerate($data,$id,$data['dept_id']);
