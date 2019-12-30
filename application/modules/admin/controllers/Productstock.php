@@ -185,17 +185,18 @@ class Productstock extends CI_Controller {
 	    //exit;
 	    $this->Productstock_model->update_deptproductstock($data,$id,$data['dept_id']);
 	    
-	    $param['pdf_data']=$this->Productstock_model->pdfgenerate($data,$id,$data['dept_id']);
+	    // $param['pdf_data']=$this->Productstock_model->pdfgenerate($data,$id,$data['dept_id']);
 	   
-	    $htmlContent = $this->load->view('admin/Productstock/pdfclientreport', $param, TRUE);
+	    // $htmlContent = $this->load->view('admin/Productstock/pdfclientreport', $param, TRUE);
 	    $uid =$this->session->userdata['uid'];
 
-        $createPDFFile = $uid.'uid_'.time().'.pdf';
+        // $createPDFFile = $uid.'uid_'.time().'.pdf';
         
-        $this->createPDF(FCPATH.'pdf/'.$createPDFFile, $htmlContent);
-        $saved_pdf = base_url().'pdf/'.$createPDFFile;
+        // $this->createPDF(FCPATH.'pdf/'.$createPDFFile, $htmlContent);
+        // $saved_pdf = base_url().'pdf/'.$createPDFFile;
         
-        $this->Productstock_model->sendemailpdf($uid,$saved_pdf);
+        //$this->Productstock_model->sendemailpdf($uid,$saved_pdf);
+        $this->Productstock_model->sendemailpdf($uid);
         
 		$this->session->set_flashdata('success', 'Productstock Has Been Updated Successfully');
 		redirect('admin/Productstock/departmentproduct/'.$data['dept_id'].'' ,'refresh');
