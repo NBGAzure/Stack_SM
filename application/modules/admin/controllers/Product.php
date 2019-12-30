@@ -13,7 +13,7 @@ class Product extends CI_Controller {
 	{	
 		$this->load->view('admin/header');
 		$this->load->view('admin/nav');
-		$this->load->view('admin/Product/product_list');
+		$this->load->view('admin/product/product_list');
 		//$this->load->view('admin/footer');
 	}
 
@@ -55,7 +55,7 @@ class Product extends CI_Controller {
 			$params['search'] = $search_text;
         }
 
-		$this->load->view('admin/Product/product_list',$params);
+		$this->load->view('admin/product/product_list',$params);
 	 	//$this->load->view('admin/footer');  	
 	}
 
@@ -105,7 +105,7 @@ class Product extends CI_Controller {
 		$data["storeresults"] = $this->Store_model->getstorename();
 	    $this->load->view('admin/header');
 		$this->load->view('admin/nav');
-	    $this->load->view('admin/Product/edit_product',$data);
+	    $this->load->view('admin/product/edit_product',$data);
 	    $this->load->view('admin/footer');
 	}
 	

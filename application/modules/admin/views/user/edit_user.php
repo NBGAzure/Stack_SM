@@ -2,7 +2,7 @@
     <section id="content_wrapper" style="margin-top: 67px;">
 <?php 
     $uid=(isset($user_data[0]->uid)!='')?$user_data[0]->uid:'';
-    $user_name=(isset($user_data[0]->user_name)!='')?$user_data[0]->user_name:'';
+    $user_name=(isset($user_data[0]->username)!='')?$user_data[0]->username:'';
 ?>
 
         <!-- -------------- Topbar -------------- -->
@@ -48,7 +48,7 @@
                                     <div class="panel-body pn">
                                         <div class="section">
                                             <label for="names" class="field prepend-icon">
-                                                <input type="text" name="user_name" id="user_name" class="gui-input" placeholder="User Name" style="padding-left: 5px;" value="<?php echo $user_name?>" required/>
+                                                <input type="text" name="user_name" id="user_name" class="gui-input" style="padding-left: 5px;" value="<?php echo $user_name?>" required/>
                                             </label>
                                         </div>
 
