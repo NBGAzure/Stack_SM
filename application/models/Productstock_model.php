@@ -269,7 +269,7 @@ Class Productstock_model extends CI_Model
         return $query;
     }
     
-    public function sendemailpdf($uid,$saved_pdf)
+    public function sendemailpdf($uid)
     {   
         
         $this->db->select('*');
