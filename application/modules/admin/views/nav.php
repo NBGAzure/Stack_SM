@@ -180,6 +180,38 @@
                     </li>
                     <?php  } ?>
 
+
+                    <li class="<?php //print $class; ?>">
+                       <a href="<?php echo base_url()?>admin/Request/request_list">
+                            <span class="fa fa-desktop"></span>
+                            <span class="sidebar-title">Request</span>
+                        </a>
+                    </li>
+
+                <?php } ?>
+
+                 <?php if($_SESSION['username']!='superadmin') {  ?>
+                    <li class="sidebar-label pt25">Request Stock</li>
+
+
+                    <li class="<?php //print $class; ?>">
+                       <a href="<?php echo base_url()?>admin/Request/request_list">
+                            <span class="fa fa-desktop"></span>
+                            <span class="sidebar-title">Request</span>
+                        </a>
+                    </li>   
+                <?php } ?>
+
+                 <?php if($_SESSION['username']=='superadmin') {  ?>
+                    <li class="sidebar-label pt25">Request Stock</li>
+
+
+                    <li class="<?php //print $class; ?>">
+                       <a href="<?php echo base_url()?>admin/Request/adminrequest_list">
+                            <span class="fa fa-desktop"></span>
+                            <span class="sidebar-title">Request</span>
+                        </a>
+                    </li>   
                 <?php } ?>
 
 
