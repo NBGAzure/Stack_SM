@@ -13,7 +13,7 @@ class Productstock extends CI_Controller {
 	{	
 		$this->load->view('admin/header');
 		$this->load->view('admin/nav');
-		$this->load->view('admin/productstock/productstock_list');
+		$this->load->view('admin/Productstock/productstock_list');
 		//$this->load->view('admin/footer');
 	}
 
@@ -56,7 +56,7 @@ class Productstock extends CI_Controller {
         $params["product_data"] = $this->Productstock_model->getproduct();
 	 	$params["department_data"] = $this->Productstock_model->getdepartment();
 
-		$this->load->view('admin/productstock/productstock_list',$params);
+		$this->load->view('admin/Productstock/productstock_list',$params);
 	 	//$this->load->view('admin/footer');  	
 	}
 
@@ -102,7 +102,7 @@ class Productstock extends CI_Controller {
 
 	    $this->load->view('admin/header');
 		$this->load->view('admin/nav');
-	    $this->load->view('admin/productstock/edit_productstock',$data);
+	    $this->load->view('admin/Productstock/edit_productstock',$data);
 	    $this->load->view('admin/footer');
 	}
 	
@@ -163,7 +163,7 @@ class Productstock extends CI_Controller {
 	    
 		$this->load->view('admin/header');
 		$this->load->view('admin/nav');
-	    $this->load->view('admin/productstock/edit_departmentproductstock',$data);
+	    $this->load->view('admin/Productstock/edit_departmentproductstock',$data);
 	    $this->load->view('admin/footer');
 	}
 
@@ -178,25 +178,25 @@ class Productstock extends CI_Controller {
 	   	$data['product_id'] =$this->input->post('product_id');
   		$data['dept_id'] =$this->input->post('dept_id');	
 	    $data['quantity']=$this->input->post('quantity');
+	    $data['previous_quantity']=$this->input->post('pre_quantity');
 	    $check = $this->input->post('check_val[]');
 	    $data['check_val']=$this->input->post('check_val[]'); 
 	    $data['create_date']=date('Y-m-d H:i:s');
-	    //print_r($data['check_val']);
-	    //exit;
+	    // print_r($data['previous_quantity']);
+	    // exit;
 	    $this->Productstock_model->update_deptproductstock($data,$id,$data['dept_id']);
 	    
-	    // $param['pdf_data']=$this->Productstock_model->pdfgenerate($data,$id,$data['dept_id']);
+	    $param['pdf_data']=$this->Productstock_model->pdfgenerate($data,$id,$data['dept_id']);
 	   
-	    // $htmlContent = $this->load->view('admin/Productstock/pdfclientreport', $param, TRUE);
+	    $htmlContent = $this->load->view('admin/Productstock/pdfclientreport', $param, TRUE);
 	    $uid =$this->session->userdata['uid'];
 
-        // $createPDFFile = $uid.'uid_'.time().'.pdf';
+        $createPDFFile = $uid.'uid_'.time().'.pdf';
         
-        // $this->createPDF(FCPATH.'pdf/'.$createPDFFile, $htmlContent);
-        // $saved_pdf = base_url().'pdf/'.$createPDFFile;
+        $this->createPDF(FCPATH.'pdf/'.$createPDFFile, $htmlContent);
+        $saved_pdf = base_url().'pdf/'.$createPDFFile;
         
-        //$this->Productstock_model->sendemailpdf($uid,$saved_pdf);
-        $this->Productstock_model->sendemailpdf($uid);
+        $this->Productstock_model->sendemailpdf($uid,$saved_pdf);
         
 		$this->session->set_flashdata('success', 'Productstock Has Been Updated Successfully');
 		redirect('admin/Productstock/departmentproduct/'.$data['dept_id'].'' ,'refresh');

@@ -205,9 +205,12 @@ Class Productstock_model extends CI_Model
                             'product_id'  => $value,
                             'dept_id'     => $dept_id,
                             'quantity'    => $post['quantity'][$key],
+                            'previous_quantity'   =>$post['previous_quantity'][$key],
                             'check_val'   => isset($post['check_val'][$key])?$post['check_val'][$key]:'',
                             'create_date' => date( 'Y-m-d H:i:s' )
                         );
+                        // print_r($updateArray);
+                        // exit;
                         $today = date('Y-m-d');
                         $this->db->where(array('uid'=>$uid,'product_id'=>$value,'dept_id'=>$dept_id));
                         $this->db->where('DATE(create_date)',$today);
@@ -223,7 +226,8 @@ Class Productstock_model extends CI_Model
                             'product_id'  => $value,
                             'dept_id'     => $dept_id,
                             'quantity'    => $post['quantity'][$key],
-                            'previous_quantity'   => $prequan,
+                            //'previous_quantity'   => $prequan,
+                            'previous_quantity'   =>$post['previous_quantity'][$key],
                             'check_val'   => $post['check_val'][$key],
                             'create_date' => date( 'Y-m-d H:i:s' )
                         );
@@ -235,9 +239,9 @@ Class Productstock_model extends CI_Model
 
            
         }
-        //print_r($insertArray);
-        //print_r($updateArray);
-       
+       //  print_r($insertArray);
+       //  print_r($updateArray);
+       // exit;
         if(isset($insertArray) && !empty($insertArray)){
             $this->db->insert_batch('product_stock', $insertArray);
             //exit;
@@ -269,7 +273,7 @@ Class Productstock_model extends CI_Model
         return $query;
     }
     
-    public function sendemailpdf($uid)
+    public function sendemailpdf($uid,$saved_pdf)
     {   
         
         $this->db->select('*');
@@ -293,9 +297,11 @@ Class Productstock_model extends CI_Model
         // );
         $config = Array(
           'protocol' => 'smtp',
-          'smtp_host' => 'smtp.hostinger.com',
+          //'smtp_host' => 'mail.emailmanagers.net',
+          'smtp_host' => 'smtp.gmail.com',
+          //'smtp_port' => 3535,
           'smtp_port' => 587,
-          'smtp_user' => 'daily-report@resnbot.net', // change it to yours
+          'smtp_user' => 'no-reply@emailmanagers.net', // change it to yours
           'smtp_pass' => 'N@rp!y$97', // change it to yours
           'mailtype' => 'html',
           'charset' => 'iso-8859-1',
@@ -303,11 +309,11 @@ Class Productstock_model extends CI_Model
         );
         $this->load->library('email', $config);
         $this->email->set_newline("\r\n");
-        $this->email->from('daily-report@resnbot.net');
+        $this->email->from('no-reply@emailmanagers.net');
         $this->email->to($email);
         $this->email->subject($subject);
         $this->email->message($message);
-       // $this->email->attach($saved_pdf);
+        $this->email->attach($saved_pdf);
         if($this->email->send())
         {
             return true;

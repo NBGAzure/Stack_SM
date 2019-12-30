@@ -73,7 +73,7 @@
                                                 <td><?php echo $val->product_name;?><input type="hidden" name="product_id[]" value="<?php echo $val->product_id;?>"></td>
                                                 <td><input type="hidden" name="dept_id" value="<?php echo $val->dept_id;?>"><?php echo $val->department_name;?></td>
                                                 <!-- <td><?php echo isset($val->previous_quantity)?$val->previous_quantity:"";?></td> -->
-                                                <td><?php echo isset($prequ_data->quantity)?$prequ_data->quantity:"";?></td>
+                                                <td><input type="text" name="pre_quantity[]" value="<?php echo isset($prequ_data->quantity)?$prequ_data->quantity:"";?>"></td>
                                                 <td><input type="text" name="quantity[]" value="<?php if(isset($val->quantity)){echo $val->quantity;}else{
                                                   echo "";}?>"></td>
                                                 <td>
