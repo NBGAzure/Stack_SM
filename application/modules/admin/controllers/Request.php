@@ -98,7 +98,18 @@ class Request extends CI_Controller {
 			$params['search'] = $search_text;
         }
 
-		$this->load->view('admin/Request/adminrequest_list',$params);
+		$this->load->view('admin/request/adminrequest_list',$params);
 	 	//$this->load->view('admin/footer');  	
+	}
+
+	public function updateproductqunatity($id)
+	{	
+		// echo $id;
+		// exit;
+		$this->db->set('check_val',0);
+		$this->db->where('id',$id);
+		$this->db->update('product_stock');
+		$this->session->set_flashdata('success', 'Product Quantity Has Been Updated Successfully!');
+        redirect('admin/request/adminrequest_list', 'refresh');
 	}
 }
