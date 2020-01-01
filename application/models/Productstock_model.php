@@ -103,7 +103,6 @@ Class Productstock_model extends CI_Model
         $this->db->from('product_stock as ps');
         $this->db->where('ps.uid',$uid);
         $this->db->where('ps.dept_id',$did);
-        //$this->db->where('ps.previous_quantity',$prequ);
         $this->db->where('DATE(ps.create_date)',$today);
         
         $res = $this->db->get()->result();
@@ -283,7 +282,7 @@ Class Productstock_model extends CI_Model
 
         $email=$user->email;
         $subject="RESNBOT REPORT";
-        $message="HELLO ".$user->username.", <br/> Please Find attachment of your product report. <br/> Thank you! ";
+        $message="HELLO ".$user->username.", <br/> Your products has been saved successfully. <br/> Thank you! ";
 
         // $config = Array(
         //   'protocol' => 'smtp',
@@ -297,11 +296,9 @@ Class Productstock_model extends CI_Model
         // );
         $config = Array(
           'protocol' => 'smtp',
-          //'smtp_host' => 'mail.emailmanagers.net',
-          'smtp_host' => 'smtp.gmail.com',
-          //'smtp_port' => 3535,
+          'smtp_host' => 'smtp.hostinger.com',
           'smtp_port' => 587,
-          'smtp_user' => 'no-reply@emailmanagers.net', // change it to yours
+          'smtp_user' => 'daily-report@resnbot.net', // change it to yours
           'smtp_pass' => 'N@rp!y$97', // change it to yours
           'mailtype' => 'html',
           'charset' => 'iso-8859-1',
@@ -309,7 +306,7 @@ Class Productstock_model extends CI_Model
         );
         $this->load->library('email', $config);
         $this->email->set_newline("\r\n");
-        $this->email->from('no-reply@emailmanagers.net');
+        $this->email->from('daily-report@resnbot.net');
         $this->email->to($email);
         $this->email->subject($subject);
         $this->email->message($message);

@@ -4,7 +4,7 @@
 <head>
     <!-- -------------- Meta and Title -------------- -->
     <meta charset="utf-8">
-    <title>Stack Management</title>
+    <title>RESNBOT</title>
     <meta name="keywords" content="HTML5, Bootstrap 3, Admin Template, UI Theme"/>
     <meta name="description" content="Alliance - A Responsive HTML5 Admin UI Framework">
     <meta name="author" content="ThemeREX">
@@ -22,7 +22,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/allcp/forms/css/forms.css">
 
     <!-- -------------- Favicon -------------- -->
-    <link rel="shortcut icon" href="<?php echo base_url();?>assets/img/fav.png">
+    <link rel="shortcut icon" href="<?php echo base_url();?>assets/img/fav.ico">
 
     <!-- -------------- IE8 HTML5 support  -------------- -->
     <!--[if lt IE 9]>
@@ -62,7 +62,7 @@
 
             <!-- -------------- Login Form -------------- -->
             <div class="allcp-form theme-primary mw320" id="login">
-                <div style="background: #ffffff14;">
+                <div style="background: #222636;">
                     <img src="<?php echo base_url();?>assets/img/resnbot.png" style="width: 46%;text-align: center !important;margin: 10px 86px;">
                 </div>
                 <div class="panel mw320">

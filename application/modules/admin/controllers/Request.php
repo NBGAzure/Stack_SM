@@ -98,7 +98,7 @@ class Request extends CI_Controller {
 			$params['search'] = $search_text;
         }
 
-		$this->load->view('admin/request/adminrequest_list',$params);
+		$this->load->view('admin/Request/adminrequest_list',$params);
 	 	//$this->load->view('admin/footer');  	
 	}
 }

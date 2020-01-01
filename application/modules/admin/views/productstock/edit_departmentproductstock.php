@@ -1,5 +1,5 @@
 <!-- -------------- Main Wrapper -------------- -->
-    <section id="content_wrapper" style="margin-top: 67px;">
+<section id="content_wrapper" style="margin-top: 67px;">
 <?php 
     $id=(isset($productstock_dept[0]->id)!='')?$productstock_dept[0]->id:'';
     $product_id=(isset($productstock_dept[0]->product_id)!='')?$productstock_dept[0]->product_id:'';
@@ -10,7 +10,12 @@
     $quantity=(isset($product_quan[0]->quantity)!='')?$product_quan[0]->quantity:'';
     
 ?>
-
+<style>
+    input#pre_quantity {
+        background: no-repeat;
+        border: none;
+    }
+</style>
         <!-- -------------- Topbar -------------- -->
         <header id="topbar" class="alt">
             <div class="topbar-left">
@@ -49,7 +54,7 @@
                                     <tr>
                                       <th class="va-m">Sr.No</th>
                                       <th class="va-m">Product</th>
-                                      <th class="va-m">Department</th>
+                                      <!--<th class="va-m">Department</th>-->
                                       <th class="va-m">Previous Quantity</th>
                                       <th class="va-m">Today Quantity</th>
                                       <th class="va-m">Require</th>
@@ -63,7 +68,7 @@
                                             //print_r($productstock_dept);
                                             $uid = $this->session->userdata['uid'];
                                             $predate = date('Y-m-d', strtotime(' -1 day'));
-                                            $prequ= "SELECT `quantity` from `product_stock` where `dept_id` = $val->dept_id and `product_id` = $val->product_id and `uid` = $uid and date(`create_date`)= '$predate' ";
+                                            $prequ= "SELECT * from `product_stock` where `dept_id` = $val->dept_id and `product_id` = $val->product_id and `uid` = $uid and 'quantity' != '' and date(`create_date`)= '$predate' ";
                                             $prequ_data = $this->db->query($prequ)->row();
                                             // echo $this->db->last_query();
                                             // print_r($prequ_data);
@@ -71,9 +76,9 @@
                                             <tr class="footable-even">
                                                 <td><span class="footable-toggle"></span><?php echo $i;?></td>
                                                 <td><?php echo $val->product_name;?><input type="hidden" name="product_id[]" value="<?php echo $val->product_id;?>"></td>
-                                                <td><input type="hidden" name="dept_id" value="<?php echo $val->dept_id;?>"><?php echo $val->department_name;?></td>
+                                                <!--<td><input type="hidden" name="dept_id" value="<?php echo $val->dept_id;?>"><?php echo $val->department_name;?></td>-->
                                                 <!-- <td><?php echo isset($val->previous_quantity)?$val->previous_quantity:"";?></td> -->
-                                                <td><input type="text" name="pre_quantity[]" value="<?php echo isset($prequ_data->quantity)?$prequ_data->quantity:"";?>"></td>
+                                                <td><input id="pre_quantity" name="pre_quantity[]" value="<?php echo isset($prequ_data->quantity)?$prequ_data->quantity:0;?>" readonly></td>
                                                 <td><input type="text" name="quantity[]" value="<?php if(isset($val->quantity)){echo $val->quantity;}else{
                                                   echo "";}?>"></td>
                                                 <td>
