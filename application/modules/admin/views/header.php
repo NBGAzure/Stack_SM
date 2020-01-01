@@ -50,11 +50,15 @@
     <![endif]-->
      <?php
 
-    if(empty($_SESSION['username']))
-    {
-        redirect('admin/Login','refresh');
-    }
-
-
+        if(empty($_SESSION['username']))
+        {
+            redirect('admin/Login','refresh');
+        }
     ?>
+
+    <style type="text/css">
+        .navbar .nav > li > a.dropdown-toggle > .fa {
+            top: -22px;
+        }
+    </style>
 </head>
