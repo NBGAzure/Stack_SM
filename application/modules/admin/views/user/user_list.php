@@ -178,6 +178,8 @@
 
 <!-- -------------- jQuery -------------- -->
 <script src="<?php echo base_url(); ?>assets/js/jquery/jquery_ui/jquery-ui.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/jquery/jquery_ui/jquery-ui.min.js"></script>
 
 <!-- -------------- Datatables JS -------------- -->
 <script src="<?php echo base_url(); ?>assets/js/plugins/datatables/media/js/jquery.dataTables.js"></script>
