@@ -52,6 +52,7 @@
                                 <tr>
                                   <th class="va-m">Sr.No</th>
                                   <th class="va-m">Product Name</th>
+                                  <th class="va-m">Quantity</th>
                                   <th class="va-m">Date</th>
                                 </tr>
                                 </thead>
@@ -65,6 +66,7 @@
                                         <tr class="footable-even">
                                             <td><span class="footable-toggle"></span><?php echo $i;?></td>
                                             <td><?php echo $val->product_name;?></td>
+                                            <th><?php echo $val->quantity;?></th>
                                             <td><?php echo date("Y-m-d", strtotime($val->create_date));?></td>
                                         </tr>
                                     <?php

@@ -91,11 +91,11 @@ $(document).ready(function() {
 
 });
 
-if ($(window).width() < 1024) {
-    $('body').addClass('sb-l-o sb-r-c mobile-view sb-l-m chute-rescale sb-l-disable-animation onload-check');
-} else {
-    $('body').removeClass('sb-l-o sb-r-c mobile-view sb-l-m chute-rescale sb-l-disable-animation onload-check');
-}
+// if ($(window).width() < 1024) {
+//     $('body').addClass('sb-l-o sb-r-c mobile-view sb-l-m chute-rescale sb-l-disable-animation onload-check');
+// } else {
+//     $('body').removeClass('sb-l-o sb-r-c mobile-view sb-l-m chute-rescale sb-l-disable-animation onload-check');
+// }
 </script>
 </body>
 

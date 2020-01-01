@@ -1,4 +1,5 @@
 <!-- -------------- Main Wrapper -------------- -->
+
     <section id="content_wrapper" style="margin-top: 67px;">
 
 
@@ -50,7 +51,9 @@
                                   <th class="va-m">Product Name</th>
                                   <th class="va-m">Department Name</th>
                                   <th class="va-m">Store Name</th>
+                                  <th class="va-m">Quantity</th>
                                   <th class="va-m">Date</th>
+                                  <th class="va-m">Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -65,7 +68,14 @@
                                             <td><?php echo $val->product_name;?></td>
                                             <td><?php echo $val->department_name;?></td>
                                             <td><?php echo $val->store_name;?></td>
+                                            <th><?php echo $val->quantity;?></th>
                                             <td><?php echo date("Y-m-d", strtotime($val->create_date));?></td>
+                                            <td>
+                                              <a class="btn-info" href="javascript:frm_submit(<?php print $val->id?>,'Complete');" id="complete" title='Complete' style="padding: 5px;">Complete</a> 
+                                              <!-- <button type="button" id="button" class="btn btn-info" >
+                                                  <b>Complete</b>
+                                              </button> -->
+                                            </td>
                                         </tr>
                                     <?php
                                         $i++;
@@ -174,26 +184,43 @@
     <?php } ?>
 </script>
 
-<script type="text/javascript">
+
+<script>
+    //$(document).ready(function(){
+        // $('#button').click(function() {
+        //   //alert();
+        //     $.ajax({
+        //         type: "POST",
+        //         url: '<?php echo base_url()?>admin/Request/updateproductqunatity/<?php echo $val->id; ?>',
+        //         success:function(data)
+        //         {
+                  
+        //             //alert('SUCCESS!!');
+        //         },
+        //         error:function()
+        //         {
+        //             alert('fail');
+        //         }
+        //     });
+        // });
+    //});
+
 
 function frm_submit(list_id,actval)
 {
-
   document.frm.list_id.value = list_id;
   document.frm.mode.value = actval;
   //alert(actval);
- if(actval=='Delete')
- {
-
- var result = confirm("Are you sure you want to delete?");
-  if (result) {
-   document.frm.action = "<?php echo base_url()?>admin/Product/delete_product/<?php echo $val->product_id; ?>";
-   document.frm.submit();
-   return
+  if(actval=='Complete')
+  {
+    var result = confirm("Are you sure you want to complete?");
+    if (result) {
+    document.frm.action = "<?php echo base_url()?>admin/Request/updateproductqunatity/<?php echo $val->id; ?>";
+    document.frm.submit();
+    return
    }
   }
 } 
-
 </script>
 
 </body>
