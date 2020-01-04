@@ -204,7 +204,7 @@ Class Productstock_model extends CI_Model
                             'product_id'  => $value,
                             'dept_id'     => $dept_id,
                             'quantity'    => $post['quantity'][$key],
-                            'previous_quantity'   =>$post['previous_quantity'][$key],
+                            'previous_quantity'   =>isset($post['previous_quantity'][$key])?$post['previous_quantity'][$key]:0,
                             'check_val'   => isset($post['check_val'][$value][0])?$post['check_val'][$value][0]:'',
                             'create_date' => date( 'Y-m-d H:i:s' )
                         );
@@ -226,7 +226,7 @@ Class Productstock_model extends CI_Model
                             'dept_id'     => $dept_id,
                             'quantity'    => $post['quantity'][$key],
                             //'previous_quantity'   => $prequan,
-                            'previous_quantity'   =>$post['previous_quantity'][$key],
+                            'previous_quantity'   =>isset($post['previous_quantity'][$key])?$post['previous_quantity'][$key]:0,
                             'check_val'   => $post['check_val'][$value][0],
                             'create_date' => date( 'Y-m-d H:i:s' )
                         );
