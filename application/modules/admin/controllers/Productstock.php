@@ -175,17 +175,30 @@ class Productstock extends CI_Controller {
 		$this->load->model('Productstock_model');
 		$id = $this->input->post('id');
 	   	
-	   	$data['product_id'] =$this->input->post('product_id');
+	   	$product_id = $this->input->post('product_id');
+	   	$data['product_id'] = $product_id;
   		$data['dept_id'] =$this->input->post('dept_id');	
 	    $data['quantity']=$this->input->post('quantity');
 	    $data['previous_quantity']=$this->input->post('pre_quantity');
 	    $check = $this->input->post('check_val[]');
-	    $data['check_val']=$this->input->post('check_val[]'); 
+	  //   foreach ($check as $key => $value) {
+	  //   	//print_r($key);
+	  // 		$che[$key] = $value[0];
+	  // 		if($product_id == $che[$key]){
+			//     $che[$key]=$value[0];
+			// }
+	  //   }
+	   	//print $che[$key];
+		//$data['check_val']=$che[$key];
+		$data['check_val'] = $check;
 	    $data['create_date']=date('Y-m-d H:i:s');
-	    // print_r($data['previous_quantity']);
-	    // exit;
+	   	//print $data['check_val'];
+		//print_r($check[$product_id]);
+		// print_r($data);
+		//  exit;
 	    $this->Productstock_model->update_deptproductstock($data,$id,$data['dept_id']);
-	    
+	    //print_r($data);
+		//exit;
 	    $param['pdf_data']=$this->Productstock_model->pdfgenerate($data,$id,$data['dept_id']);
 	   
 	    $htmlContent = $this->load->view('admin/productstock/pdfclientreport', $param, TRUE);
