@@ -25,10 +25,9 @@
 
 <!-- -------------- jQuery -------------- -->
 <script src="<?php echo base_url()?>assets/js/jquery/jquery-1.11.3.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/jquery/jquery_ui/jquery-ui.min.js"></script>
-
 <script src="<?php echo base_url()?>assets/js/jquery/jquery_ui/jquery-ui.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
 
 
 <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
@@ -36,7 +35,6 @@
 <!-- -------------- HighCharts Plugin -------------- -->
 <script src="<?php echo base_url()?>assets/js/plugins/highcharts/highcharts.js"></script>
 <script src="<?php echo base_url()?>assets/js/plugins/c3charts/d3.min.js"></script>
-<script src="<?php echo base_url()?>assets/js/plugins/c3charts/c3.min.js"></script>
 
 <!-- -------------- Simple Circles Plugin -------------- -->
 <script src="<?php echo base_url()?>assets/js/plugins/circles/circles.js"></script>
