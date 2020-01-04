@@ -1,6 +1,10 @@
 <!-- -------------- Main Wrapper -------------- -->
     <section id="content_wrapper" style="margin-top: 67px;">
-
+    <style>
+        div.dataTables_paginate {
+            position: sticky;
+        }
+    </style>
 
         <!-- -------------- Topbar -------------- -->
         <header id="topbar" class="alt">
@@ -87,19 +91,19 @@
                                       <input name="mode" type="hidden" />
                                 </form>
 
-                                  <tfoot class="footer-menu">
-                                    <tr>
-                                      <td colspan="5">
-                                        <nav class="text-right">  
-                                          <ul class="pagination hide-if-no-paging">
-                                            <?php if (isset($links)) { ?>
-                                            <li class="footable-page"><?php echo $links ?></li>
-                                            <?php } ?>
-                                          </ul>
-                                        </nav>
-                                      </td> 
-                                    </tr>
-                                  </tfoot>
+                                  <!--<tfoot class="footer-menu">-->
+                                  <!--  <tr>-->
+                                  <!--    <td colspan="5">-->
+                                  <!--      <nav class="text-right">  -->
+                                  <!--        <ul class="pagination hide-if-no-paging">-->
+                                  <!--          <?php if (isset($links)) { ?>-->
+                                  <!--          <li class="footable-page"><?php echo $links ?></li>-->
+                                  <!--          <?php } ?>-->
+                                  <!--        </ul>-->
+                                  <!--      </nav>-->
+                                  <!--    </td> -->
+                                  <!--  </tr>-->
+                                  <!--</tfoot>-->
                                 </table>
                                   <?php
                                     }

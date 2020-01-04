@@ -57,8 +57,11 @@
     ?>
 
     <style type="text/css">
+    @media(max-width:767px){
         .navbar .nav > li > a.dropdown-toggle > .fa {
             top: -22px;
         }
+        
+    }
     </style>
 </head>

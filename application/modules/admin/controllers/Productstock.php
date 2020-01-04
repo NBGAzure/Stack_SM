@@ -181,26 +181,14 @@ class Productstock extends CI_Controller {
 	    $data['quantity']=$this->input->post('quantity');
 	    $data['previous_quantity']=$this->input->post('pre_quantity');
 	    $check = $this->input->post('check_val[]');
-	  //   foreach ($check as $key => $value) {
-	  //   	//print_r($key);
-	  // 		$che[$key] = $value[0];
-	  // 		if($product_id == $che[$key]){
-			//     $che[$key]=$value[0];
-			// }
-	  //   }
-	   	//print $che[$key];
-		//$data['check_val']=$che[$key];
-		$data['check_val'] = $check;
+	    $data['check_val'] = $check;
 	    $data['create_date']=date('Y-m-d H:i:s');
-	   	//print $data['check_val'];
-		//print_r($check[$product_id]);
-		// print_r($data);
-		//  exit;
-	    $this->Productstock_model->update_deptproductstock($data,$id,$data['dept_id']);
-	    //print_r($data);
-		//exit;
-	    $param['pdf_data']=$this->Productstock_model->pdfgenerate($data,$id,$data['dept_id']);
 	   
+	    $this->Productstock_model->update_deptproductstock($data,$id,$data['dept_id']);
+	    
+	    $param['pdf_data']=$this->Productstock_model->pdfgenerate($data,$id,$data['dept_id']);
+	    //print_r($param['pdf_data']);
+	    //exit;
 	    $htmlContent = $this->load->view('admin/productstock/pdfclientreport', $param, TRUE);
 	    $uid =$this->session->userdata['uid'];
 

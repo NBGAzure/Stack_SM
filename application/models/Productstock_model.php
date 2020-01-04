@@ -183,7 +183,7 @@ Class Productstock_model extends CI_Model
            if($key1 == 'product_id'){
                 $i = 0;
                 foreach ($data as $key => $value) {
-                    print_r($key);
+                    //print_r($key);
                     $this->db->select('ps.*');
                     $this->db->from('product_stock as ps');
                     $this->db->where('ps.uid',$uid);
@@ -270,10 +270,11 @@ Class Productstock_model extends CI_Model
     public function pdfgenerate($post,$did,$dept_id)
     {   
         $uid =$this->session->userdata['uid'];
-        $this->db->select('ps.*,dt.department_name,pro.product_name');
+        $this->db->select('ps.*,dt.department_name,pro.product_name,um.username');
         $this->db->from('product_stock as ps');
         $this->db->join('products as pro', 'pro.product_id = ps.product_id');
         $this->db->join('department as dt', 'dt.dept_id = ps.dept_id');
+        $this->db->join('user_master as um', 'um.uid = ps.uid');
         $this->db->where('ps.uid',$uid);
         $this->db->where('ps.dept_id',$dept_id);
         $this->db->where('date(ps.create_date)',date('Y-m-d'));

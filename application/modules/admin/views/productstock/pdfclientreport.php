@@ -112,6 +112,16 @@
                 }
               </style>
                 <div class="card-body">
+                  <di v class="col-sm-6" style="width: 100%">
+                     <?php echo date('Y-m-d');?>
+                  </div>
+                  <div class="col-sm-6" style="width: 100%">
+                     <?php
+                       $username = $pdf_data[0]['username'];
+                     ?>
+                      <?php echo $username;?>
+                     
+                  </div>
                   <div class="col-sm-12" style="width: 100%">
                     <div style="text-align: center;">
                       <h4 class="card-title">RESNBOT REPORT</h4>
@@ -120,9 +130,9 @@
                   
                   <div class="col-sm-12" style="width: 100%">
                     <table>
-                      <div>
-                        <h4 style="padding-top: 20px;">Service User Details</h4>
-                      </div>
+                      <!--<div>-->
+                      <!--  <h4 style="padding-top: 20px;">Service User Details</h4>-->
+                      <!--</div>-->
                       <thead>
                         <tr>
                           <th class="va-m">Sr.No</th>
