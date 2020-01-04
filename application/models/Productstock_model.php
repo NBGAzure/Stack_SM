@@ -103,13 +103,14 @@ Class Productstock_model extends CI_Model
         $this->db->from('product_stock as ps');
         $this->db->where('ps.uid',$uid);
         $this->db->where('ps.dept_id',$did);
+        //$this->db->where('ps.previous_quantity',$prequ);
         $this->db->where('DATE(ps.create_date)',$today);
         
         $res = $this->db->get()->result();
         // echo $this->db->last_query();
         // exit;
         if(count($res)>0){
-            $this->db->select('pro.product_name,pro.product_id,dt.department_name,dt.dept_id,ps.quantity,ps.check_val,ps.previous_quantity,ps.create_date');
+            $this->db->select('pro.product_name,pro.product_id,dt.department_name,dt.dept_id,ps.id,ps.quantity,ps.check_val,ps.previous_quantity,ps.create_date');
             $this->db->from('products as pro'); 
             $this->db->join('department as dt', 'dt.dept_id = pro.dept_id','left');
             $this->db->join('product_stock as ps', 'ps.dept_id = pro.dept_id and `ps`.`product_id` = `pro`.`product_id`','left');
@@ -164,6 +165,16 @@ Class Productstock_model extends CI_Model
 
     public function update_deptproductstock($post,$did,$dept_id)
     {   
+        // print_r($post);
+        // foreach ($check as $key => $value) {
+        //     //print_r($key);
+        //     $che[$key] = $value[0];
+        //     if($product_id == $che[$key]){
+        //         $che[$key]=$value[0];
+        //     }
+        // }
+        // echo $che[$key];
+        //exit;
         $uid =$this->session->userdata['uid'];
         $insertArray = array();
         $updateArray = array();
@@ -172,7 +183,7 @@ Class Productstock_model extends CI_Model
            if($key1 == 'product_id'){
                 $i = 0;
                 foreach ($data as $key => $value) {
-
+                    print_r($key);
                     $this->db->select('ps.*');
                     $this->db->from('product_stock as ps');
                     $this->db->where('ps.uid',$uid);
@@ -204,12 +215,12 @@ Class Productstock_model extends CI_Model
                             'product_id'  => $value,
                             'dept_id'     => $dept_id,
                             'quantity'    => $post['quantity'][$key],
-                            'previous_quantity'   =>isset($post['previous_quantity'][$key])?$post['previous_quantity'][$key]:0,
+                            'previous_quantity'   =>$post['previous_quantity'][$key],
                             'check_val'   => isset($post['check_val'][$value][0])?$post['check_val'][$value][0]:'',
                             'create_date' => date( 'Y-m-d H:i:s' )
                         );
-                        // print_r($updateArray);
-                        // exit;
+                         //print_r($updateArray);
+                         //exit;
                         $today = date('Y-m-d');
                         $this->db->where(array('uid'=>$uid,'product_id'=>$value,'dept_id'=>$dept_id));
                         $this->db->where('DATE(create_date)',$today);
@@ -226,7 +237,7 @@ Class Productstock_model extends CI_Model
                             'dept_id'     => $dept_id,
                             'quantity'    => $post['quantity'][$key],
                             //'previous_quantity'   => $prequan,
-                            'previous_quantity'   =>isset($post['previous_quantity'][$key])?$post['previous_quantity'][$key]:0,
+                            'previous_quantity'   =>$post['previous_quantity'][$key],
                             'check_val'   => $post['check_val'][$value][0],
                             'create_date' => date( 'Y-m-d H:i:s' )
                         );
@@ -238,9 +249,9 @@ Class Productstock_model extends CI_Model
 
            
         }
-       //  print_r($insertArray);
-       //  print_r($updateArray);
-       // exit;
+        //print_r($insertArray);
+        //print_r($updateArray);
+        //exit;
         if(isset($insertArray) && !empty($insertArray)){
             $this->db->insert_batch('product_stock', $insertArray);
             //exit;
