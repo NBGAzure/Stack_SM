@@ -63,6 +63,7 @@
                                     <tbody>
                                         <?php
                                           $i=1;
+                                          $j=0;
                                           foreach($productstock_dept as $val)
                                           {
                                             //print_r($productstock_dept);
@@ -76,18 +77,21 @@
                                             <tr class="footable-even">
                                                 <td><span class="footable-toggle"></span><?php echo $i;?></td>
                                                 <td><?php echo $val->product_name;?><input type="hidden" name="product_id[]" value="<?php echo $val->product_id;?>"></td>
+                                                <input type="hidden" name="dept_id" value="<?php echo $val->dept_id;?>">
                                                 <!--<td><input type="hidden" name="dept_id" value="<?php echo $val->dept_id;?>"><?php echo $val->department_name;?></td>-->
                                                 <!-- <td><?php echo isset($val->previous_quantity)?$val->previous_quantity:"";?></td> -->
                                                 <td><input id="pre_quantity" name="pre_quantity[]" value="<?php echo isset($prequ_data->quantity)?$prequ_data->quantity:0;?>" readonly></td>
                                                 <td><input type="text" name="quantity[]" value="<?php if(isset($val->quantity)){echo $val->quantity;}else{
-                                                  echo "";}?>"></td>
+                                                  echo "";}?>" required/></td>
                                                 <td>
-                                                    <!-- <input type="hidden" id="checkItem" name="check_val[]" value="0" /> -->
-                                                    <input type="checkbox" id="checkItem" name="check_val[]" value="1"<?php if(isset($val->check_val)){echo "checked = checked";}else{echo "";}?>>
+                                                    <!-- <input type="hidden" id="" name="check_val[]" value="0" /> -->
+                                                    <!-- <input id='checkItemHidden[]' type='hidden' value='0' name='check_val[]'> -->
+                                                    <input type="checkbox" id="checkItem[]" name="check_val[<?php echo $val->product_id;?>][]" value="1" <?php if(isset($val->check_val)){echo "checked = checked";}else{echo "";}?>>
                                                 </td>
                                             </tr>
                                         <?php
                                             $i++;
+                                            $j++;
                                           }
                                         ?>
                                     
