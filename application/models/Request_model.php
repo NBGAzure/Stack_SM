@@ -29,6 +29,7 @@ Class Request_model extends CI_Model
           $this->db->like('p.product_name', $search);
         }
         $this->db->order_by("ps.id","asc");
+        $this->db->group_by("ps.product_id");
         $this->db->limit($limit, $start);
         
         $query = $this->db->get();
@@ -71,6 +72,7 @@ Class Request_model extends CI_Model
           $this->db->like('dt.department_name', $search);
         }
         $this->db->order_by("ps.id","asc");
+        $this->db->group_by("ps.product_id");
         $this->db->limit($limit, $start);
         
         $query = $this->db->get();
