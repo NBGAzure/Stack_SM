@@ -56,7 +56,7 @@
                                       <th class="va-m">Product</th>
                                       <!--<th class="va-m">Department</th>-->
                                       <th class="va-m">Previous Quantity</th>
-                                      <th class="va-m">Today Quantity</th>
+                                      <th class="va-m">Current Quantity</th>
                                       <th class="va-m">Require</th>
                                     </tr>
                                     </thead>
