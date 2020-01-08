@@ -86,7 +86,8 @@
                                                 <td>
                                                     <!-- <input type="hidden" id="" name="check_val[]" value="0" /> -->
                                                     <!-- <input id='checkItemHidden[]' type='hidden' value='0' name='check_val[]'> -->
-                                                    <input type="checkbox" id="checkItem[]" name="check_val[<?php echo $val->product_id;?>][]" value="1" <?php if(isset($val->check_val) && $val->check_val==1){echo "checked";}else{echo "";}?>>
+                                                    <input type="checkbox" id="checkItem[]" name="check_val[<?php echo $val->product_id;?>][]" value="<?php if(isset($val->check_val)){echo $val->check_val;}else{
+                                                  echo "";}?>">
                                                 </td>
                                             </tr>
                                         <?php 
