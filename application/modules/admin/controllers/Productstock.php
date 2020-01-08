@@ -196,8 +196,8 @@ class Productstock extends CI_Controller {
         
         $this->createPDF(FCPATH.'pdf/'.$createPDFFile, $htmlContent);
         $saved_pdf = base_url().'pdf/'.$createPDFFile;
-        // echo $saved_pdf;
-        // exit;
+        //echo $saved_pdf;
+        //exit;
         $this->Productstock_model->sendemailpdf($uid,$saved_pdf);
         
 		$this->session->set_flashdata('success', 'Productstock Has Been Updated Successfully');

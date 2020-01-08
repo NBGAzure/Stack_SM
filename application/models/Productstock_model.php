@@ -238,7 +238,7 @@ Class Productstock_model extends CI_Model
                             'quantity'    => $post['quantity'][$key],
                             //'previous_quantity'   => $prequan,
                             'previous_quantity'   =>$post['previous_quantity'][$key],
-                            'check_val'   => $post['check_val'][$value][0],
+                            'check_val'   => isset($post['check_val'][$value][0])?$post['check_val'][$value][0]:"",
                             'create_date' => date( 'Y-m-d H:i:s' )
                         );
                     }
@@ -326,6 +326,7 @@ Class Productstock_model extends CI_Model
         if($this->email->send())
         {
             return true;
+            //exit;
         }
         else
         {
