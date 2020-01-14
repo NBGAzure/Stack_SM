@@ -112,14 +112,16 @@
                 }
               </style>
                 <div class="card-body">
-                  <di v class="col-sm-6" style="width: 100%">
-                     <?php echo date('Y-m-d');?>
+                  <div class="col-sm-6" style="width: 100%">
+                    Date: <?php echo date('Y-m-d');?>
                   </div>
                   <div class="col-sm-6" style="width: 100%">
                      <?php
                        $username = $pdf_data[0]['username'];
+                       $department_name = $pdf_data[0]['department_name'];
                      ?>
-                      <?php echo $username;?>
+                      User Name: <?php echo $username;?>
+                      Department Name: <?php echo $department_name;?>
                      
                   </div>
                   <div class="col-sm-12" style="width: 100%">
@@ -137,7 +139,6 @@
                         <tr>
                           <th class="va-m">Sr.No</th>
                           <th class="va-m">Product</th>
-                          <th class="va-m">Department</th>
                           <th class="va-m">Previous Quantity</th>
                           <th class="va-m">Quantity</th>  
                         </tr>
@@ -151,7 +152,6 @@
                         <tr>
                           <td><span class="footable-toggle"></span><?php echo $i;?></td>
                           <td><?php echo $val['product_name'];?></td>
-                          <td><?php echo $val['department_name'];?></td>
                           <td><?php echo $val['previous_quantity'];?></td>
                           <td><?php echo $val['quantity'];?></td>
                         </tr>

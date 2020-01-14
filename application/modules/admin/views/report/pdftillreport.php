@@ -10,7 +10,7 @@
   <meta name="author" content="">
   <!-- Favicon icon -->
   <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
-  <title>Resnbot User Product Report</title>
+  <title>Resnbot Till Report</title>
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -114,14 +114,14 @@
                 <div class="card-body">
                   <div class="col-sm-12" style="width: 100%">
                     <div style="text-align: center;">
-                      <h4 class="card-title">RESNBOT REPORT</h4>
+                      <h4 class="card-title">RESNBOT TILL REPORT</h4>
                     </div>
                   </div> 
                   
                   <div class="col-sm-12" style="width: 100%">
                     <table>
                       <div>
-                        <h4 style="padding-top: 20px;">TILL REPORT</h4>
+                        Date: <?php echo date('Y-m-d');?>
                       </div>
                       <thead>
                         <tr>
