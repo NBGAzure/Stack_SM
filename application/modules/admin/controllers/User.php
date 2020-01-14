@@ -78,7 +78,7 @@ class User extends CI_Controller {
 	    $data['user_role']=$this->input->post('user_role');
 	    $data['username']=$this->input->post('user_name');
 	    $data['password']=md5($this->input->post('user_pass'));
-	    
+	    $data['till_report']=$this->input->post('checktill');
 	    $this->User_model->insert_user($data);
 	    $this->load->view('admin/header');
 		$this->load->view('admin/nav');
@@ -106,7 +106,7 @@ class User extends CI_Controller {
 
 		$data['username']=$this->input->post('user_name');
 	    $data['password']=md5($this->input->post('user_pass'));
-
+	    $data['till_report']=$this->input->post('checktill');
         $this->User_model->update_user($data,$id);
         $this->load->view('admin/header');
 		$this->load->view('admin/nav');
@@ -118,7 +118,7 @@ class User extends CI_Controller {
 	public function delete_user()
 	{	
 		$id = $_POST['list_id'];
-	    $this->db->where('id', $id);
+	    $this->db->where('uid', $id);
         $this->db->delete('user_master');
         $this->load->view('admin/header');
 		$this->load->view('admin/nav');

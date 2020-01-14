@@ -125,7 +125,23 @@
                                                <a href="<?php echo base_url()?>admin/Request/request_list">
                                                     <span class="sidebar-title">Request</span>
                                                 </a>
-                                            </li>   
+                                            </li>
+
+                                            
+
+                                            <?php 
+                                                $uid =$this->session->userdata['uid'];
+                                                $query = $this->db->query("SELECT * from user_master WHERE `uid` = ".$uid." AND `till_report`= 1");
+                                                $res = $query->row();
+                                                $till=isset($res->till_report)?$res->till_report:0;
+                                                if($till==1){ 
+                                            ?>
+                                                <li class="dash_li">
+                                                   <a href="<?php echo base_url()?>admin/Report/tillreportitem">
+                                                        <span class="sidebar-title">Till Report</span>
+                                                    </a>
+                                                </li>  
+                                            <?php  } ?>
                                         <?php } ?>
 
                                          <?php if($_SESSION['username']=='superadmin') {  ?>
@@ -134,7 +150,13 @@
                                                <a href="<?php echo base_url()?>admin/Request/adminrequest_list">
                                                     <span class="sidebar-title">Request</span>
                                                 </a>
-                                            </li>   
+                                            </li> 
+
+                                            <li class="dash_li">
+                                               <a href="<?php echo base_url()?>admin/Report/report_list">
+                                                    <span class="sidebar-title">Till Report</span>
+                                                </a>
+                                            </li>     
                                         <?php } ?>
 
                                     </div>

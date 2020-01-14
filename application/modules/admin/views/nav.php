@@ -14,6 +14,10 @@
             display: block;
         }
     }
+    div.dataTables_paginate {
+        margin-top: 5px;
+        position: sticky;
+    }
 </style>
 
 <!-- -------------- Body Wrap  -------------- -->
@@ -161,13 +165,7 @@
                 <?php } ?>
 
                 <?php if($_SESSION['username']!='superadmin') {  ?>
-                    <?php //if(current_url() == site_url('admin/Productstock/productstock_list')) { $class = 'active';} else { $class =''; }  ?>
-                    <!-- <li class="<?php print $class; ?>">
-                       <a href="<?php echo site_url('admin/Productstock/productstock_list');?>">
-                            <span class="fa fa-desktop"></span>
-                            <span class="sidebar-title">Product Stock</span>
-                        </a>
-                    </li> -->
+                    
                     <?php 
                     $uid =$this->session->userdata['uid'];
                     $query = $this->db->query("SELECT * from department WHERE `visible_for` = ".$uid." ");
@@ -180,7 +178,19 @@
                     </li>
                     <?php  } ?>
 
-
+                    <?php 
+                    $uid =$this->session->userdata['uid'];
+                    $query = $this->db->query("SELECT * from user_master WHERE `uid` = ".$uid." AND `till_report`= 1");
+                    $res = $query->row();
+                    $till=isset($res->till_report)?$res->till_report:0;
+                    if($till==1){ ?>
+                     <li class="<?php //print $class; ?>">
+                       <a href="<?php echo base_url()?>admin/Report/tillreportitem">
+                            <span class="fa fa-desktop"></span>
+                            <span class="sidebar-title">Till Report</span>
+                        </a>
+                    </li> 
+                    <?php  } ?>
                 <?php } ?>
 
                  <?php if($_SESSION['username']!='superadmin') {  ?>
@@ -193,9 +203,20 @@
                             <span class="sidebar-title">Request</span>
                         </a>
                     </li>   
+
+                   <!--  <li class="sidebar-label pt25">Report Stock</li>
+
+
+                    <li class="<?php //print $class; ?>">
+                       <a href="<?php echo base_url()?>admin/Report/usertillreport_list">
+                            <span class="fa fa-desktop"></span>
+                            <span class="sidebar-title">Till Report</span>
+                        </a>
+                    </li>    -->
+
                 <?php } ?>
 
-                 <?php if($_SESSION['username']=='superadmin') {  ?>
+                <?php if($_SESSION['username']=='superadmin') {  ?>
                     <li class="sidebar-label pt25">Request Stock</li>
 
 
@@ -203,6 +224,17 @@
                        <a href="<?php echo base_url()?>admin/Request/adminrequest_list">
                             <span class="fa fa-desktop"></span>
                             <span class="sidebar-title">Request</span>
+                        </a>
+                    </li>   
+
+
+                    <li class="sidebar-label pt25">Report Stock</li>
+
+
+                    <li class="<?php //print $class; ?>">
+                       <a href="<?php echo base_url()?>admin/Report/report_list">
+                            <span class="fa fa-desktop"></span>
+                            <span class="sidebar-title">Till Report</span>
                         </a>
                     </li>   
                 <?php } ?>
