@@ -62,7 +62,7 @@
                                       <th class="va-m">Type</th>
                                       <th class="va-m">Today Quantity</th>
                                       <th class="va-m">Total(in dollar)</th>
-                                      <th class="va-m">Previous Quantity</th>
+                                      <th class="va-m">Previous Total</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -74,9 +74,9 @@
                                             //print_r($till_report);
                                             $uid = $this->session->userdata['uid'];
                                             $predate = date('Y-m-d', strtotime(' -1 day'));
-                                            $prequ= "SELECT * from `report_stock` where `uid` = $uid and 'quantity' != '' and date(`created_date`)= '$predate' ";
+                                            $prequ= "SELECT * from `report_stock` where `uid` = $uid and `quantity` != '' and `item_id`=".$val->itemid." and date(`created_date`)= '$predate' ";
                                             $prequ_data = $this->db->query($prequ)->row();
-                                            // echo $this->db->last_query();
+                                            //echo $this->db->last_query();
                                             // print_r($prequ_data);
                                         ?>
                                             <tr class="footable-even">
@@ -84,8 +84,8 @@
                                                 <td><?php echo $val->item;?><input type="hidden" name="item_id[]" value="<?php echo $val->itemid;?>"></td>
                                                 <td><input type="text" name="quantity[]" value="<?php if(isset($val->quantity)){echo $val->quantity;}else{
                                                   echo "";}?>" /></td>
-                                                <td><input type="text" id="total[]" name="total[]" value="<?php if(isset($val->total)){echo $val->total;}else{echo "0";}?>" readonly/></td>
-                                                <td><input id="previous_qun" name="previous_qun[]" value="<?php echo isset($prequ_data->quantity)?$prequ_data->quantity:0;?>" readonly></td>
+                                                <td><input type="text" id="total[]" name="total[]" value="<?php if(isset($val->total)){echo $val->total;}else{echo "0";}?>" style="background: none;border: none;" readonly/></td>
+                                                <td><input id="previous_qun" name="previous_qun[]" value="<?php echo isset($prequ_data->total)?$prequ_data->total:0;?>" style="background: none;border: none;" readonly></td>
                                             </tr>
                                         <?php
                                             $i++;
