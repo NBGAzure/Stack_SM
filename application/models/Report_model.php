@@ -97,13 +97,13 @@ Class Report_model extends CI_Model
             $this->db->where('date(rs.created_date)',date('Y-m-d'));
             if(date('rs.created_date')!= date('Y-m-d') && date('rs.created_date') == date('Y-m-d', strtotime(' -1 day'))){
                 $this->db->where('date(rs.created_date)',date('Y-m-d', strtotime(' -1 day')));
-            }
+            }$this->db->where_not_in('tr.id',array('12','19','20','21','22'));
             $this->db->group_by('tr.id');
             
         }else{
             $this->db->select('tr.item,tr.id as itemid');
             $this->db->from('tillreport as tr'); 
-            //$this->db->where('tr.id',$did);
+            $this->db->where_not_in('tr.id',array('12','19','20','21','22'));
             $this->db->group_by('tr.id');
         }
         $query = $this->db->get();

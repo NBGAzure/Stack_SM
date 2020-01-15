@@ -84,7 +84,7 @@
                                                 <td><?php echo $val->item;?><input type="hidden" name="item_id[]" value="<?php echo $val->itemid;?>"></td>
                                                 <td><input type="text" name="quantity[]" value="<?php if(isset($val->quantity)){echo $val->quantity;}else{
                                                   echo "";}?>" /></td>
-                                                <td><input type="text" id="total[]" name="total[]" value="<?php if(isset($val->total)){echo $val->total;}else{echo "0";}?>"></td>
+                                                <td><input type="text" id="total[]" name="total[]" value="<?php if(isset($val->total)){echo $val->total;}else{echo "0";}?>" readonly/></td>
                                                 <td><input id="previous_qun" name="previous_qun[]" value="<?php echo isset($prequ_data->quantity)?$prequ_data->quantity:0;?>" readonly></td>
                                             </tr>
                                         <?php
