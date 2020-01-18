@@ -311,7 +311,7 @@ Class Productstock_model extends CI_Model
           'smtp_host' => 'smtp.hostinger.com',
           'smtp_port' => 587,
           'smtp_user' => 'daily-report@resnbot.net', // change it to yours
-          'smtp_pass' => 'SJl1J*Z]H0', // change it to yours
+          'smtp_pass' => 'X:iZwY|g', // change it to yours
           'mailtype' => 'html',
           'charset' => 'iso-8859-1',
           'wordwrap' => TRUE
