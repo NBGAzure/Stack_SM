@@ -318,7 +318,7 @@ Class Productstock_model extends CI_Model
         );
         $this->load->library('email', $config);
         $this->email->set_newline("\r\n");
-        $this->email->from('daily-report@resnbot.net');
+        $this->email->from('vicky@resnbot.net');
         $this->email->to($email);
         $this->email->subject($subject);
         $this->email->message($message);
