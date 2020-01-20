@@ -292,7 +292,7 @@ Class Productstock_model extends CI_Model
         $this->db->from('user_master');
         $user = $this->db->get()->row();
 
-        $email=$this->$user->email;
+        $email=$user->email;
         $subject="RESNBOT REPORT";
         $message="HELLO ".$email.", <br/> Your products has been saved successfully. <br/> Thank you! ";
 
