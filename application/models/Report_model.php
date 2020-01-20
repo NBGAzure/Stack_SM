@@ -75,7 +75,7 @@ Class Report_model extends CI_Model
         $this->db->update('tillreport',$data);
     }
     
-    public function geteditreportitem($did)
+    public function geteditreportitem($uid)
     {   
         $uid =$this->session->userdata['uid'];
         $today = date('Y-m-d');
@@ -252,7 +252,7 @@ Class Report_model extends CI_Model
         
     }
 
-    public function submit_reportstock($did)
+    public function submit_reportstock($uid)
     {   
         $uid =$this->session->userdata['uid'];
         
@@ -389,7 +389,7 @@ Class Report_model extends CI_Model
         }     
     }
 
-    public function pdfgenerate($post,$did)
+    public function pdfgenerate($post,$uid)
     {   
         $uid =$this->session->userdata['uid'];
         $this->db->select('rs.*,tr.item');
