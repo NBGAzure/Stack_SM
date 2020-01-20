@@ -414,14 +414,14 @@ Class Report_model extends CI_Model
         $user = $this->db->get()->row();
 
 
-        $to=$user->email;
+        $email=$user->email;
         $subject="RESNBOT REPORT";
         $message="HELLO ".$user->username.", <br/> Your till report has been submitted successfully. <br/> Thank you! ";
 
 
-        // $q -> $this -> db -> query("select email as email_id from user_master where uid=$uid");
-        // $d -> $q -> row_array();
-        // $test_to -> $d['email_id'];
+        $q -> $this -> db -> query("select email as email_id from user_master where uid=$uid");
+        $d -> $q -> row_array();
+        $test_to -> $d['email_id'];
 
         // $config = Array(
         //   'protocol' => 'smtp',
@@ -446,7 +446,7 @@ Class Report_model extends CI_Model
         $this->load->library('email', $config);
         $this->email->set_newline("\r\n");
         $this->email->from('no-reply@resnbot.net');
-        $this->email->to($to);
+        $this->email->to($user->email);
         $this->email->subject($subject);
         $this->email->message($message);
         $this->email->attach($saved_pdf);
