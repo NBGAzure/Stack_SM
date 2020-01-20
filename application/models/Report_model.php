@@ -414,7 +414,7 @@ Class Report_model extends CI_Model
         $user = $this->db->get()->row();
 
 
-        $email=$this->$user->email;
+        $to=$this->$user->email;
         $subject="RESNBOT REPORT";
         $message="HELLO ".$user->username.", <br/> Your till report has been submitted successfully. <br/> Thank you! ";
 
@@ -446,7 +446,7 @@ Class Report_model extends CI_Model
         $this->load->library('email', $config);
         $this->email->set_newline("\r\n");
         $this->email->from('no-reply@resnbot.net');
-        $this->email->to($email);
+        $this->email->to($to);
         $this->email->subject($subject);
         $this->email->message($message);
         $this->email->attach($saved_pdf);
