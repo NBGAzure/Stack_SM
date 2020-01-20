@@ -411,7 +411,7 @@ Class Report_model extends CI_Model
         $this->db->select('email');
         $this->db->where('uid',$uid);
         $this->db->from('user_master');
-        $user = $this->db->get()->row();
+        $user = db->get()->row();
 
         $email=$user->email;
         $subject="RESNBOT REPORT";
