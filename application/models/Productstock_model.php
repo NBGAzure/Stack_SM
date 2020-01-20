@@ -294,7 +294,7 @@ Class Productstock_model extends CI_Model
 
         $email=$this->$user->email;
         $subject="RESNBOT REPORT";
-        $message="HELLO ".$user->email.", <br/> Your products has been saved successfully. <br/> Thank you! ";
+        $message="HELLO ".$email.", <br/> Your products has been saved successfully. <br/> Thank you! ";
 
         // $config = Array(
         //   'protocol' => 'smtp',
