@@ -75,7 +75,7 @@ Class Report_model extends CI_Model
         $this->db->update('tillreport',$data);
     }
     
-    public function geteditreportitem($uid)
+    public function geteditreportitem($did)
     {   
         $uid =$this->session->userdata['uid'];
         $today = date('Y-m-d');
@@ -252,7 +252,7 @@ Class Report_model extends CI_Model
         
     }
 
-    public function submit_reportstock($uid)
+    public function submit_reportstock($did)
     {   
         $uid =$this->session->userdata['uid'];
         
@@ -389,7 +389,7 @@ Class Report_model extends CI_Model
         }     
     }
 
-    public function pdfgenerate($post,$uid)
+    public function pdfgenerate($post,$did)
     {   
         $uid =$this->session->userdata['uid'];
         $this->db->select('rs.*,tr.item');
@@ -414,7 +414,7 @@ Class Report_model extends CI_Model
         $user = $this->db->get()->row();
 
 
-        $to=$this->$user->email;
+        $email=$this->$user->email;
         $subject="RESNBOT REPORT";
         $message="HELLO ".$user->username.", <br/> Your till report has been submitted successfully. <br/> Thank you! ";
 
@@ -437,16 +437,16 @@ Class Report_model extends CI_Model
           'protocol' => 'smtp',
           'smtp_host' => 'smtp.hostinger.com',
           'smtp_port' => 587,
-          'smtp_user' => 'no-reply@resnbot.net', // change it to yours
-          'smtp_pass' => '|;h4DCP!', // change it to yours
+          'smtp_user' => 'test@resnbot.net', // change it to yours
+          'smtp_pass' => 'TRkSsR|i', // change it to yours
           'mailtype' => 'html',
           'charset' => 'iso-8859-1',
           'wordwrap' => TRUE
         );
         $this->load->library('email', $config);
         $this->email->set_newline("\r\n");
-        $this->email->from('no-reply@resnbot.net');
-        $this->email->to($to);
+        $this->email->from('test@resnbot.net');
+        $this->email->to('vickydesai8002@gmail.com');
         $this->email->subject($subject);
         $this->email->message($message);
         $this->email->attach($saved_pdf);
