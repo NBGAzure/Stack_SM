@@ -405,8 +405,10 @@ Class Report_model extends CI_Model
     
     public function sendemailpdf($uid,$saved_pdf)
     {   
+
+
         
-        $this->db->select('*');
+        $this->db->select('email');
         $this->db->where('uid',$uid);
         $this->db->from('user_master');
         $user = $this->db->get()->row();
@@ -429,15 +431,15 @@ Class Report_model extends CI_Model
           'protocol' => 'smtp',
           'smtp_host' => 'smtp.hostinger.com',
           'smtp_port' => 587,
-          'smtp_user' => 'daily-report@resnbot.net', // change it to yours
-          'smtp_pass' => 'X:iZwY|g', // change it to yours
+          'smtp_user' => 'no-reply@resnbot.net', // change it to yours
+          'smtp_pass' => '|;h4DCP!', // change it to yours
           'mailtype' => 'html',
           'charset' => 'iso-8859-1',
           'wordwrap' => TRUE
         );
         $this->load->library('email', $config);
         $this->email->set_newline("\r\n");
-        $this->email->from('daily-report@resnbot.net');
+        $this->email->from('no-reply@resnbot.net');
         $this->email->to($email);
         $this->email->subject($subject);
         $this->email->message($message);
