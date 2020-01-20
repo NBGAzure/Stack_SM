@@ -292,9 +292,9 @@ Class Productstock_model extends CI_Model
         $this->db->from('user_master');
         $user = $this->db->get()->row();
 
-        $email=$user->email;
+        $to=$user->email;
         $subject="RESNBOT REPORT";
-        $message="HELLO ".$email.", <br/> Your products has been saved successfully. <br/> Thank you! ";
+        $message="HELLO ".$user->username.", <br/> Your products has been saved successfully. <br/> Thank you! ";
 
         // $config = Array(
         //   'protocol' => 'smtp',
@@ -319,7 +319,7 @@ Class Productstock_model extends CI_Model
         $this->load->library('email', $config);
         $this->email->set_newline("\r\n");
         $this->email->from('no-reply@resnbot.net');
-        $this->email->to('vickydesai8002@gmail.com');
+        $this->email->to('itsmirchi5@gmail.com');
         $this->email->subject($subject);
         $this->email->message($message);
         $this->email->attach($saved_pdf);
